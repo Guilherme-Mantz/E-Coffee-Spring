@@ -1,6 +1,7 @@
 package br.com.ecoffee.service.endereco;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -42,6 +43,15 @@ public class EnderecoService {
 		Endereco enderecoCadastrado = enderecoRepository.save(endereco);
 		
 		return enderecoCadastrado;
+	}
+
+	public Optional<Endereco> buscarEnderecoPeloId(Long idEndereco) {
+		return enderecoRepository.findById(idEndereco);
+	}
+
+	@Transactional
+	public void deletarEndereco(Long idEndereco) {
+		enderecoRepository.deleteById(idEndereco);
 	}
 
 }

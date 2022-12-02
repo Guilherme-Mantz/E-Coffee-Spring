@@ -8,21 +8,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.model.cliente.Cliente;
-import br.com.ecoffee.repository.cliente.ClienteRepository;
+import br.com.ecoffee.service.cliente.ClienteService;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {
 
-	private ClienteRepository repository;
+	private ClienteService clienteService;
 
-	public AutenticacaoService(ClienteRepository repository) {
-		this.repository = repository;
+	public AutenticacaoService(ClienteService clienteService) {
+		this.clienteService = clienteService;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Optional<Cliente> cliente = repository.findByEmail(username);
+		Optional<Cliente> cliente = clienteService.buscarClientePeloEmail(username);
 
 		if(cliente.isPresent()) {
 			return cliente.get();

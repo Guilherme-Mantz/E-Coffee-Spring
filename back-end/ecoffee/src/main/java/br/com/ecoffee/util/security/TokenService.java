@@ -48,8 +48,14 @@ public class TokenService {
 
 	public Long getIdUsuario(String token) {
 		
-		Claims body = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
-		return Long.valueOf(body.getSubject());
+		try {
+			Claims body = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
+			return Long.valueOf(body.getSubject());
+		}
+		catch(Exception e) {
+			return null;
+		}	
+
 	}
 
 }

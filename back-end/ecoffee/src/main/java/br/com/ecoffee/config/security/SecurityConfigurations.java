@@ -11,27 +11,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.ecoffee.repository.cliente.ClienteRepository;
+import br.com.ecoffee.filters.AutenticacaoTokenFilter;
+import br.com.ecoffee.service.cliente.ClienteService;
 import br.com.ecoffee.service.security.impl.AutenticacaoService;
-import br.com.ecoffee.util.security.AutenticacaoTokenFilter;
 import br.com.ecoffee.util.security.TokenService;
 
 @Configuration
 public class SecurityConfigurations {
 
-	private AutenticacaoService autenticacaoService;
+	private ClienteService clienteService;
 	private TokenService tokenService;
-	private ClienteRepository repository;
-
-	public SecurityConfigurations(AutenticacaoService autenticacaoService, TokenService tokenService, ClienteRepository repository) {
-		this.autenticacaoService = autenticacaoService;
+	
+	public SecurityConfigurations(ClienteService clienteService, TokenService tokenService) {
+		this.clienteService = clienteService;
 		this.tokenService = tokenService;
-		this.repository = repository;
 	}
 
 	@Bean
 	public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-		return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(autenticacaoService)
+		return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(new AutenticacaoService(clienteService))
 				.passwordEncoder(new BCryptPasswordEncoder()).and().build();
 	}
 
@@ -42,7 +40,7 @@ public class SecurityConfigurations {
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, repository), UsernamePasswordAuthenticationFilter.class);
+		.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, clienteService), UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
 	}

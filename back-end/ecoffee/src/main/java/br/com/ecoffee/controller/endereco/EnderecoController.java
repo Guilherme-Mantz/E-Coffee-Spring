@@ -2,11 +2,13 @@ package br.com.ecoffee.controller.endereco;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +42,18 @@ public class EnderecoController {
 		
 		URI uri = uriBuilder.path("/endereco/cadastrar/{idEndereco}").buildAndExpand(endereco.getIdEndereco()).toUri();
 		return ResponseEntity.created(uri).body(new EnderecoDto(endereco));
+	}
+	
+	@DeleteMapping("deletar/{idEndereco}")
+	public ResponseEntity<?> deletarEnderecoPeloId(@PathVariable Long idEndereco){
+		
+		Optional<Endereco> endereco = enderecoService.buscarEnderecoPeloId(idEndereco);
+		if(endereco.isPresent()) {
+			
+			enderecoService.deletarEndereco(idEndereco);
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 }
