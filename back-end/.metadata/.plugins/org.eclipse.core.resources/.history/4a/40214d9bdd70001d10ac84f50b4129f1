@@ -1,0 +1,5 @@
+package br.com.ecoffee.endereco;
+
+public class EnderecoController {
+
+}

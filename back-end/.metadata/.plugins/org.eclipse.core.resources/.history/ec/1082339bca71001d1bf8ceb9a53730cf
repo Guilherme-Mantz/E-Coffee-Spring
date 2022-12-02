@@ -1,0 +1,46 @@
+package br.com.ecoffee.service.endereco;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.endereco.Endereco;
+import br.com.ecoffee.model.endereco.EnderecoDto;
+import br.com.ecoffee.repository.endereco.EnderecoRepository;
+import br.com.ecoffee.service.cliente.ClienteService;
+
+@Service
+public class EnderecoService {
+	
+	private EnderecoRepository enderecoRepository;
+	private ClienteService clienteService;
+	
+	public EnderecoService(EnderecoRepository enderecoRepository, ClienteService clienteService) {
+		this.enderecoRepository = enderecoRepository;
+		this.clienteService = clienteService;
+	}
+
+	public List<EnderecoDto> listarEnderecosPeloCliente(Long idCliente) {
+		List<Endereco> enderecos = enderecoRepository.findByIdCliente(idCliente);
+		List<EnderecoDto> dtos = enderecos.stream().map(EnderecoDto::new).collect(Collectors.toList());
+		
+		return dtos;
+	}
+
+	@Transactional
+	public Endereco cadastrarEndereco(Long idCliente, EnderecoForm enderecoForm) {
+
+		Cliente cliente = clienteService.buscarClientePeloId(idCliente).get();
+		Endereco endereco = enderecoForm.toEndereco();
+		endereco.setCliente(cliente);
+		
+		Endereco enderecoCadastrado = enderecoRepository.save(endereco);
+		
+		return enderecoCadastrado;
+	}
+
+}

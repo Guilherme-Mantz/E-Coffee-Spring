@@ -1,0 +1,76 @@
+package br.com.ecoffee.produto;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import br.com.ecoffee.model.categoria.Categoria;
+
+@Entity
+@Table(name = "produtos")
+public class Produto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idProduto;
+	
+	@Column(name = "nome_produto", nullable = false, length = 200)
+	private String nomeProduto;
+	
+	@Column(nullable = false, length = 150)
+	private String sku;
+	
+	@Column(name = "codigo_de_barra", nullable = false, length = 13)
+	private String codigoBarra;
+	
+	@Column(name = "status_produto", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private StatusProduto statusProduto;
+	
+	@OneToOne
+	@JoinColumn(name = "idCategoria")
+	private Categoria categoria;
+	
+	@Column(name = "descricao_produto", nullable = false)
+	private String descricaoProduto;
+	
+	@Column(name = "informacoes_tecnicas", nullable = false)
+	private String informacoesTecnicas;
+	
+	@Column(nullable = false)
+	private Double peso;
+	
+	@Column(nullable = false)
+	private BigDecimal preco;
+	
+	@Column(nullable = false)
+	private BigDecimal custo;
+	
+	@Column(name = "titulo_na_pagina", nullable = false, length = 200)
+	private String tituloPagina;
+	
+	@Column(name = "palavras_chave", nullable = false, length = 200)
+	private String palavrasChave;
+	
+	@Column(nullable = false)
+	private Long quantidadeEstoque;
+
+	@Column(nullable = false, length = 200)
+	private String imagem;
+	
+	@Column(nullable = false, length = 200)
+	private String miniaturaUm;
+	
+	@Column(nullable = false, length = 200)
+	private String miniaturaDois;
+	
+}

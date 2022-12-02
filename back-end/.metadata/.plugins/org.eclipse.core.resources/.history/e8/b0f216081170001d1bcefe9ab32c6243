@@ -1,0 +1,34 @@
+package br.com.ecoffee.cliente;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class ClienteService {
+
+	private ClienteRepository clienteRepository;
+	
+	public ClienteService(ClienteRepository clienteRepository) {
+		this.clienteRepository = clienteRepository;
+	}
+	
+	@Transactional
+	public String login(LoginForm login) {
+		UsernamePasswordAuthenticationToken dadosLogin = form.converter();
+		
+		Authentication authenticate = authManager.authenticate(dadosLogin);
+		String token = tokenService.gerarToken(authenticate);
+	}
+
+	@Transactional
+	public Cliente cadastrarCliente(ClienteForm clienteForm) {
+		Cliente cliente = clienteForm.toCliente();
+		Cliente novoCliente = clienteRepository.save(cliente);
+		
+		return novoCliente;
+	}
+
+}

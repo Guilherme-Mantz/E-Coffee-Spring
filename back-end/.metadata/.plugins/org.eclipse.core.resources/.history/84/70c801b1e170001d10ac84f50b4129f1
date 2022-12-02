@@ -1,0 +1,21 @@
+package br.com.ecoffee.endereco;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import br.com.ecoffee.repository.EnderecoRepository;
+
+@Service
+public class EnderecoService {
+	
+	private EnderecoRepository enderecoRepository;
+	
+
+	public List<EnderecoDto> listarEnderecosPeloCliente(Long idCliente) {
+		List<Endereco> enderecos = enderecoRepository.findByIdCliente(idCliente);
+		
+		return null;
+	}
+
+}

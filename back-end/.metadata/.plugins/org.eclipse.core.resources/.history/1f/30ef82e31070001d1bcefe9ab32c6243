@@ -1,0 +1,24 @@
+package br.com.ecoffee.cliente;
+
+import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class ClienteService {
+
+	private ClienteRepository clienteRepository;
+	
+	public ClienteService(ClienteRepository clienteRepository) {
+		this.clienteRepository = clienteRepository;
+	}
+
+	@Transactional
+	public Cliente cadastrarCliente(ClienteForm clienteForm) {
+		Cliente cliente = clienteForm.toCliente();
+		Cliente novoCliente = clienteRepository.save(cliente);
+		
+		return novoCliente;
+	}
+
+}
