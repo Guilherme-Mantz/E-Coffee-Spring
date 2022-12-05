@@ -34,7 +34,6 @@
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.cliente.ClienteService"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.endereco.Endereco"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.endereco.EnderecoDto"/>
@@ -44,7 +43,11 @@
     <fullyQualifiedTypeName name="br.com.ecoffee.service.login.LoginService"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.util.security.TokenService"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.filters.AutenticacaoTokenFilter"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="br.com.ecoffee.model.endereco.Endereco"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="br.com.ecoffee.dto.endereco.EnderecoDto"/>
 </qualifiedTypeNameHistroy>

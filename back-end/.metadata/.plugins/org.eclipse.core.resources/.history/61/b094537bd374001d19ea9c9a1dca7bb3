@@ -1,0 +1,57 @@
+package br.com.ecoffee.dto.endereco;
+
+import br.com.ecoffee.model.endereco.Endereco;
+
+public class AtualizarEnderecoForm {
+
+	private String nomeEndereco;
+	private String logradouro;
+	private String cep;
+	private String numeroResidencia;
+	private String bairro;
+	private String cidade;
+	private String uf;
+	private String complemento;
+
+	public Endereco atualizar(Endereco endereco) {
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		if (!logradouro.isEmpty()) {
+			endereco.setLogradouro(logradouro);
+		}
+
+		if (!cep.isEmpty()) {
+			endereco.setCep(cep);
+		}
+
+		if (!numeroResidencia.isEmpty()) {
+			endereco.setNumeroResidencia(numeroResidencia);
+		}
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		if (!nomeEndereco.isEmpty()) {
+			endereco.setNomeEndereco(nomeEndereco);
+		}
+
+		return null;
+	}
+
+}

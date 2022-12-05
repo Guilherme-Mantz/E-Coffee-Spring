@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ecoffee.dto.endereco.AtualizarEnderecoForm;
 import br.com.ecoffee.dto.endereco.EnderecoDto;
 import br.com.ecoffee.dto.endereco.EnderecoForm;
 import br.com.ecoffee.model.cliente.Cliente;
@@ -52,6 +53,15 @@ public class EnderecoService {
 	@Transactional
 	public void deletarEndereco(Long idEndereco) {
 		enderecoRepository.deleteById(idEndereco);
+	}
+
+	@Transactional
+	public Endereco atualizarEndereco(Long idEndereco, AtualizarEnderecoForm atualizarForm) {
+		
+		Endereco endereco = enderecoRepository.findById(idEndereco).get();
+		Endereco enderecoAtualizado = atualizarForm.atualizar(endereco);
+		
+		return enderecoAtualizado;
 	}
 
 }
