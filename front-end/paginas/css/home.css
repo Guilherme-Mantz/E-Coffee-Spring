@@ -6,6 +6,10 @@ html, body {
     background-color: #291616 !important;
 }
 
+.title-primary-color {
+	color: #CE5F20;
+}
+
 #banner-home {
     width: 140px;
 }
@@ -118,25 +122,48 @@ cursor: pointer;
 }
 
 /*=========== CARDS ===========*/
-.card {
+#card-produto {
     border: 0;
     margin: 10px 55px 60px 55px;
     width: 18rem;
 }
 
-.card:hover {
+#card-produto:hover {
     border-radius: 25px;
     box-shadow: 5px 8px 27px 6px rgba(112,112,112,0.78);
     color: #CE5F20;
     -webkit-box-shadow: 5px 8px 27px 6px rgba(112,112,112,0.78); 
 }
 
-.card #img-card {
+#card-produto #img-card {
     width: 215px;
 }
 
-.card .card-body .card-text {
+#card-produto .card-body .card-text {
     font-size: 20px;
     font-weight: 700;
     margin: 0;
+}
+
+/*======= CARD USUARIO HOME ========*/
+#card-user-options {
+	background-color: #FFF1E0;
+    border: 1px solid #CE5F20;
+    border-radius: 11px;
+    height: 200px;
+    width: 400px;
+}
+
+#card-user-options .row{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#card-user-options #icon-option {
+	font-size: 60px;
+}
+
+#card-user-options .card-text {
+	box-sizing: content-box;
+	font-size: 20px;
 }

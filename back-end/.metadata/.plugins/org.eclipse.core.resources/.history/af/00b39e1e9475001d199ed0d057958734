@@ -1,0 +1,5 @@
+package br.com.ecoffee.service.produto;
+
+public class ProdutoService {
+
+}

@@ -18,11 +18,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.ecoffee.dto.cliente.AtualizarClienteForm;
 import br.com.ecoffee.dto.cliente.ClienteDto;
 import br.com.ecoffee.dto.cliente.ClienteForm;
-import br.com.ecoffee.dto.cliente.LoginForm;
-import br.com.ecoffee.dto.security.TokenDto;
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.service.cliente.ClienteService;
-import br.com.ecoffee.service.login.LoginService;
 
 @RestController
 @RequestMapping("/cliente")
@@ -30,17 +27,6 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
-	@Autowired
-	private LoginService loginServie;
-	
-	@PostMapping("login")
-	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginForm loginForm){
-		String token = loginServie.login(loginForm);
-		
-		return ResponseEntity.ok(new TokenDto(token, "Bearer"));
-
-	}
 	
 	@PostMapping("cadastrar")
 	public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder) {

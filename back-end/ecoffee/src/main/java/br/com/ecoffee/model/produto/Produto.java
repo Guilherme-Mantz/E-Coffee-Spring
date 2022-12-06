@@ -22,55 +22,123 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProduto;
-	
+
 	@Column(name = "nome_produto", nullable = false, length = 200)
 	private String nomeProduto;
-	
+
 	@Column(nullable = false, length = 150)
 	private String sku;
-	
+
 	@Column(name = "codigo_de_barra", nullable = false, length = 13)
 	private String codigoBarra;
-	
+
 	@Column(name = "status_produto", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private StatusProduto statusProduto;
-	
+
 	@OneToOne
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
-	
+
 	@Column(name = "descricao_produto", nullable = false)
 	private String descricaoProduto;
-	
+
 	@Column(name = "informacoes_tecnicas", nullable = false)
 	private String informacoesTecnicas;
-	
+
 	@Column(nullable = false)
 	private Double peso;
-	
+
 	@Column(nullable = false)
 	private BigDecimal preco;
-	
+
 	@Column(nullable = false)
 	private BigDecimal custo;
-	
+
 	@Column(name = "titulo_na_pagina", nullable = false, length = 200)
 	private String tituloPagina;
-	
+
 	@Column(name = "palavras_chave", nullable = false, length = 200)
 	private String palavrasChave;
-	
+
 	@Column(nullable = false)
 	private Long quantidadeEstoque;
 
 	@Column(nullable = false, length = 200)
 	private String imagem;
-	
+
 	@Column(nullable = false, length = 200)
 	private String miniaturaUm;
-	
+
 	@Column(nullable = false, length = 200)
 	private String miniaturaDois;
-	
+
+	public Long getIdProduto() {
+		return idProduto;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public String getSku() {
+		return sku;
+	}
+
+	public String getCodigoBarra() {
+		return codigoBarra;
+	}
+
+	public StatusProduto getStatusProduto() {
+		return statusProduto;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public String getDescricaoProduto() {
+		return descricaoProduto;
+	}
+
+	public String getInformacoesTecnicas() {
+		return informacoesTecnicas;
+	}
+
+	public Double getPeso() {
+		return peso;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public BigDecimal getCusto() {
+		return custo;
+	}
+
+	public String getTituloPagina() {
+		return tituloPagina;
+	}
+
+	public String getPalavrasChave() {
+		return palavrasChave;
+	}
+
+	public Long getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public String getMiniaturaUm() {
+		return miniaturaUm;
+	}
+
+	public String getMiniaturaDois() {
+		return miniaturaDois;
+	}
+
 }

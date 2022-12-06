@@ -1,5 +1,0 @@
-package br.com.ecoffee.config.validacao;
-
-public class ErroDeFormularioDto {
-
-}
