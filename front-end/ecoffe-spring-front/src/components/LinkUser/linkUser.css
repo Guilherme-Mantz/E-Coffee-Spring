@@ -1,0 +1,21 @@
+#card-user-options {
+	background-color: #FFF1E0;
+    border: 1px solid #CE5F20;
+    border-radius: 11px;
+    height: 200px;
+    width: 400px;
+}
+
+#card-user-options .row{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#card-user-options #icon-option {
+	font-size: 60px;
+}
+
+#card-user-options .card-text {
+	box-sizing: content-box;
+	font-size: 20px;
+}

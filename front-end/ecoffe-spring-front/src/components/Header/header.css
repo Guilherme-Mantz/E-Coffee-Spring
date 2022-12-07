@@ -1,0 +1,29 @@
+.bg-primary-color {
+    background-color: #291616 !important;
+}
+
+#banner-home {
+    width: 140px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #CE5F20 !important;
+}
+
+.navbar-nav .nav-item .nav-link #cart-icon {
+    font-size: 35px;
+}
+
+#search-bar {
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 11px;
+    outline: 0 !important;
+    width: 560px;
+}
