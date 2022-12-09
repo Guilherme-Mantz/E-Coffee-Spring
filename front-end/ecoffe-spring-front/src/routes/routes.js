@@ -9,7 +9,7 @@ export default function Router() {
     return(
         <Routes>
             <Route path='/index' element={<Index/>}/>
-            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/iniciarsessao' element={<LoginPage/>}/>
             <Route path='/user/home' element={<HomeUser/>}/>
         </Routes>
     );

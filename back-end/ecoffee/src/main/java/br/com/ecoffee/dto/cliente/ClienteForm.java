@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.util.security.BcryptUtil;
 
 public class ClienteForm {
 
@@ -87,7 +88,7 @@ public class ClienteForm {
 	}
 
 	public Cliente toCliente() {
-		return new Cliente(nome, sobrenome, telefone, cpf, email, senha);
+		return new Cliente(nome, sobrenome, telefone, cpf, email, BcryptUtil.getHash(senha));
 	}
 
 }

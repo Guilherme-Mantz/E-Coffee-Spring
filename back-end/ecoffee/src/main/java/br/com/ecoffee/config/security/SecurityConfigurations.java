@@ -35,8 +35,8 @@ public class SecurityConfigurations {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/cliente/*").permitAll()
+		http.cors().and().authorizeRequests()
+		.antMatchers(HttpMethod.POST, "/cliente/cadastrar").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()

@@ -53,4 +53,6 @@
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.dto.produto.ProdutoDto"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCrypt"/>
+    <fullyQualifiedTypeName name="br.com.ecoffee.util.security.BcryptUtil"/>
 </qualifiedTypeNameHistroy>

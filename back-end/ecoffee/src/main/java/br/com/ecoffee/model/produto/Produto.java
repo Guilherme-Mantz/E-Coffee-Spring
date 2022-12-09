@@ -20,7 +20,7 @@ import br.com.ecoffee.model.categoria.Categoria;
 public class Produto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long idProduto;
 
 	@Column(name = "nome_produto", nullable = false, length = 200)

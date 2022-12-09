@@ -16,7 +16,7 @@ import br.com.ecoffee.model.cliente.Cliente;
 public class Endereco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long idEndereco;
 
 	@Column(name = "nome_do_endereco", nullable = false, length = 45)

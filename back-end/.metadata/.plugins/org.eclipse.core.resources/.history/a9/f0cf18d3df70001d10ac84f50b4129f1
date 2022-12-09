@@ -1,9 +1,0 @@
-package br.com.ecoffee.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import br.com.ecoffee.endereco.Endereco;
-
-public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
-
-}

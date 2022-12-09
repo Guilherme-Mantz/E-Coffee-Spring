@@ -27,7 +27,7 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@PostMapping("cadastrar")
 	public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder) {
 		Cliente cliente = clienteService.cadastrarCliente(clienteForm);
