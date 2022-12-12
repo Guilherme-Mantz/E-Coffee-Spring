@@ -7,7 +7,7 @@ export default function Index () {
         <>
         <Header />
             <main>
-                <div class="container">
+                <div className="container">
                     <Carrossel/>
                 </div>
             </main>

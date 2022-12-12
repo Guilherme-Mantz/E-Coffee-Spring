@@ -79,37 +79,21 @@ public class AtualizarEnderecoForm {
 
 	public Endereco atualizar(Endereco endereco) {
 
-		if (!nomeEndereco.isEmpty()) {
-			endereco.setNomeEndereco(nomeEndereco);
-		}
+		endereco.setNomeEndereco(nomeEndereco);
 
-		if (!logradouro.isEmpty()) {
-			endereco.setLogradouro(logradouro);
-		}
+		endereco.setLogradouro(logradouro);
 
-		if (!cep.isEmpty()) {
-			endereco.setCep(cep);
-		}
+		endereco.setCep(cep);
 
-		if (!numeroResidencia.isEmpty()) {
-			endereco.setNumeroResidencia(numeroResidencia);
-		}
+		endereco.setNumeroResidencia(numeroResidencia);
 
-		if (!bairro.isEmpty()) {
-			endereco.setBairro(bairro);
-		}
+		endereco.setBairro(bairro);
 
-		if (!cidade.isEmpty()) {
-			endereco.setCidade(cidade);
-		}
+		endereco.setCidade(cidade);
 
-		if (!uf.isEmpty()) {
-			endereco.setUf(uf);
-		}
+		endereco.setUf(uf);
 
-		if (!complemento.isEmpty()) {
-			endereco.setComplemento(complemento);
-		}
+		endereco.setComplemento(complemento);
 
 		return endereco;
 	}

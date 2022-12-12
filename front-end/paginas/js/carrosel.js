@@ -8,10 +8,10 @@ const dots = Array.from(dotsNav.children);
 const slideWidth = slides[0].getBoundingClientRect().width;
 
 // passar os slides
-//index = numero
 const setSlidePosition = (slide, index) => {
     slide.style.left = slideWidth * index + 'px';
 };
+
 slides.forEach(setSlidePosition);
 
 const moveToSlide = (track, currentSlide, targetSlide) => {

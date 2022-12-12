@@ -1,6 +1,7 @@
 package br.com.ecoffee.dto.cliente;
 
 import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.util.security.BcryptUtil;
 
 public class AtualizarClienteForm {
 
@@ -61,28 +62,14 @@ public class AtualizarClienteForm {
 
 	public Cliente atualizar(Cliente cliente) {
 		
-		if(!this.nome.isEmpty()) {
-			cliente.setNome(nome);
-		}
-		
-		if(!this.sobrenome.isEmpty()) {
-			cliente.setSobrenome(sobrenome);
-		}
-		
-		if(!this.telefone.isEmpty()) {
-			cliente.setTelefone(telefone);
-		}
-		
-		if(!this.cpf.isEmpty()) {
-			cliente.setCpf(cpf);
-		}
-		
-		if(!this.email.isEmpty()) {
-			cliente.setEmail(email);
-		}
+		cliente.setNome(this.nome);
+		cliente.setSobrenome(this.sobrenome);
+		cliente.setTelefone(this.telefone);
+		cliente.setCpf(this.cpf);
+		cliente.setEmail(this.email);
 		
 		if(!this.senha.isEmpty()) {
-			cliente.setSenha(senha);
+			cliente.setSenha(BcryptUtil.getHash(senha));
 		}
 		
 		return cliente;

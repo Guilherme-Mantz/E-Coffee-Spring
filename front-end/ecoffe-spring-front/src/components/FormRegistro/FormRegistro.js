@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { cpf } from 'cpf-cnpj-validator';
 
+import history from "../../history";
 import api from '../../hook/api';
 
 export default function FormRegistro () {
 
-    const navigate = useNavigate();
     const [ form, setForm ] = useState({
         nome: "",
         sobrenome: "",
@@ -61,7 +60,7 @@ export default function FormRegistro () {
             await api.post('/cliente/cadastrar', form)
             .then((res) => { 
                 if(res.status === 201){
-                    navigate('/');
+                    history.go('/');
                 };
             })
             .catch((error) => {
