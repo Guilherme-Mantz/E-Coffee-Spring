@@ -1,0 +1,5 @@
+DB_DATABASE=jdbc:mysql://localhost:3306/ecoffee_spring
+DB_USER=root 
+DB_PASSWORD=1qaz@3EDC
+
+JWT_Secret=AAGYGrNx^:$Zrqq^}ZMi2:JSYp{U^F)5Q<I_!.9pUDiPv+N/ovcOe6pdM)z-98JH,}lq4Gy0{;F7xn)b;?Ec:m.w3.PCA'd"@TNqiq\6-t-yV/))IM'SiD2fOX(Qn[E]/'Pz|mh 7Q`fls#WAQf7M*
