@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.dto.cliente.AtualizarClienteForm;
 import br.com.ecoffee.dto.cliente.ClienteForm;
+import br.com.ecoffee.exception.UniqueException;
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.repository.cliente.ClienteRepository;
 
@@ -23,13 +24,25 @@ public class ClienteService {
 	@Transactional
 	public Cliente cadastrarCliente(ClienteForm clienteForm) {
 		Cliente cliente = clienteForm.toCliente();
+		
+		if(buscarClientePeloEmail(cliente.getEmail()).isPresent()) {
+			throw new UniqueException("E-mail já utilizado, por favor tente outro!", "email");
+		}
+		if(buscarClientePeloCpf(cliente.getCpf()).isPresent()) {
+			throw new UniqueException("Por favor tente outro CPF!", "cpf");
+		}
+		
 		Cliente novoCliente = clienteRepository.save(cliente);
 		
 		return novoCliente;
 	}
 
-	public Optional<Cliente> buscarClientePeloEmail(String username) {
-		return clienteRepository.findByEmail(username);
+	private Optional<Cliente> buscarClientePeloCpf(String cpf) {
+		return clienteRepository.findByCpf(cpf);		
+	}
+
+	public Optional<Cliente> buscarClientePeloEmail(String email) {
+		return clienteRepository.findByEmail(email);
 	}
 
 	public Optional<Cliente> buscarClientePeloId(Long idUsuario) {

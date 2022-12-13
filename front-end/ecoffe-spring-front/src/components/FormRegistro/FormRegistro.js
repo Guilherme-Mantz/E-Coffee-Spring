@@ -20,8 +20,9 @@ export default function FormRegistro () {
     const [ validCpf, setValidCpf ] = useState(true);
     const [ lengthPassword, setLengthPassword ] = useState('');
     const [ confirmedPassword, setConfirmedPassword ] = useState(false);
-    const [ uniqueCpf, setUniqueCpf ] = useState(false);
-    const [ uniqueEmail, setUniqueEmail ] = useState(false);
+
+    const [ errorCpf, setErrorCpf ] = useState({status: false, error: ''});
+    const [ errorEmail, setErrorEmail ] = useState({status: false, error: ''});
 
     function handleChange(e){
         let newProp = form;
@@ -42,6 +43,9 @@ export default function FormRegistro () {
 
     async function handleCadaster(e){
         e.preventDefault();
+
+        setErrorEmail({status: false });
+        setErrorCpf({status: false });
 
         /* Campos preenchidos */
         let emptyValues = Object.values(form).some(obj => obj === "");
@@ -64,13 +68,13 @@ export default function FormRegistro () {
                 };
             })
             .catch((error) => {
-                switch(error.response.status){
-                    case 409:
-                        setUniqueCpf(true);
-                    break;
-                    case 406:
-                        setUniqueEmail(true);
-                    break;
+
+                if(error.response.data.campo == "email" ){
+                    setErrorEmail({status: true, error: error.response.data.erro});
+                };
+
+                if(error.response.data.campo == "cpf" ){
+                    setErrorCpf({status: true, error: error.response.data.erro});
                 };
             })
         };
@@ -103,12 +107,14 @@ export default function FormRegistro () {
                     <input type="text" name="cpf" maxLength="11" placeholder="CPF" id="cpf" onBlur={(e) => handleChange(e)}/>
                     { emptyValue && form["cpf"] === "" ? <span className='text-wite'>É necessário informar o CPF</span> : ''}
                     { !validCpf && form["cpf"] !== "" ? <span className='text-wite'>CPF inválido </span> : ''}
+                    { errorCpf["status"] ? <span className='text-wite'>{errorCpf["error"]}</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="email" name="email" placeholder="E-mail" id="email" onBlur={(e) => handleChange(e)}/>
                     { emptyValue && form["email"] === "" ? <span className='text-wite'>É necessário informar o E-mail</span> : ''}
                     { !validEmail && form["email"] !== "" ? <span className='text-wite'>E-mail inválido </span> : '' }
+                    { errorEmail["status"] ? <span className='text-wite'>{errorEmail["error"]}</span> : ''}
                 </div>
 
                 <div className="formCadastro">

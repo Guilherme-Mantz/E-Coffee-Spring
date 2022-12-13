@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.ecoffee.dto.errors.ErroDeFormularioDto;
+import br.com.ecoffee.exception.UniqueException;
+
 @RestControllerAdvice
 public class ErroValidacaoHandler {
 	
@@ -34,5 +37,13 @@ public class ErroValidacaoHandler {
 		
 		return dto;
 	}
+	
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UniqueException.class)
+    public ErroDeFormularioDto handleUniqueException(UniqueException exception) {
+
+        return new ErroDeFormularioDto(exception.getCampo(), exception.getMessage());
+
+    }
 	
 }
