@@ -7,18 +7,29 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.dto.cliente.AtualizarClienteForm;
+import br.com.ecoffee.dto.cliente.ClienteDto;
 import br.com.ecoffee.dto.cliente.ClienteForm;
 import br.com.ecoffee.exception.UniqueException;
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.repository.cliente.ClienteRepository;
+import br.com.ecoffee.util.security.TokenService;
 
 @Service
 public class ClienteService {
 
 	private ClienteRepository clienteRepository;
+	private TokenService jwtService;
 	
-	public ClienteService(ClienteRepository clienteRepository) {
+	public ClienteService(ClienteRepository clienteRepository, TokenService jwtService) {
 		this.clienteRepository = clienteRepository;
+		this.jwtService = jwtService;
+	}
+	
+	public ClienteDto detalhesDeLoginCliente(String token) {
+	    Long idCliente = jwtService.getIdUsuario(token);
+	    Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+	    
+	    return new ClienteDto(cliente.get());
 	}
 
 	@Transactional

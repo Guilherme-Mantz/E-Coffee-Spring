@@ -1,8 +1,25 @@
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../context/AuthContext";
 import { Link } from 'react-router-dom';
+import api from '../../hook/api';
 
 import './header.css';
 
 export default function Header () {
+
+    const { authenticated } = useContext(Context);
+    const [ nomeUsuario, setNomeUsuario ] = useState('');
+
+    useEffect(() => {
+    
+        if (authenticated) {
+            api.get('/cliente/get/data').then((res) => { 
+                setNomeUsuario(res.data.nome);
+            });
+        };
+    
+    }, [authenticated]);
+
     return (
         <nav className="navbar navbar-expand-lg bg-primary-color">
             <div className="container">
@@ -33,7 +50,10 @@ export default function Header () {
                             <Link className="nav-link text-white" to="/">Cápsulas<i className="bi bi-chevron-down"></i></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white" to="/iniciarsessao">Login</Link>
+                            { nomeUsuario !== '' ? <Link className="nav-link text-white" to="/user/home">Olá, {nomeUsuario}</Link> 
+                                : <Link className="nav-link text-white" to="/iniciarsessao">Login</Link>
+                            }
+                            
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link text-white" to="/"><i className="bi bi-cart2" id="cart-icon"></i></Link>
