@@ -124,7 +124,7 @@ export default function FormRegistro () {
                 </div>
 
                 <div className="formCadastro">
-                    <input type="password" name="confirmarSenha" placeholder="Confirme a Senha" id="confirmarSenha" onBlur={(e) => handleChange(e)}/>
+                    <input type="password" name="confirmarSenha" placeholder="Confirme a Senha" id="confirmarSenha" onChange={(e) => handleChange(e)}/>
                     { confirmedPassword ? <span className='text-wite'>As senhas precisam ser iguais!</span> : '' }
                 </div>
                 <button style={{marginTop: "17px"}} type="submit">Registrar-se</button>

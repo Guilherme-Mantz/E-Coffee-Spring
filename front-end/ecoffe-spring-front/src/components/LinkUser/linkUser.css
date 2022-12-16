@@ -17,5 +17,11 @@
 
 #card-user-options .card-text {
 	box-sizing: content-box;
+	color: #252525;
 	font-size: 20px;
+	text-decoration: none;
+}
+
+#card-user-options .card-text:hover {
+	color: #CE5F20;
 }

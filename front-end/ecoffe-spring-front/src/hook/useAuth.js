@@ -23,15 +23,21 @@ export default function useAuth() {
 
         localStorage.setItem("token",JSON.stringify(token));
         api.defaults.headers.Authorization = `Bearer ${token}`;
+        
         setAuthenticated(true);
         history.push('/');
+
+        window.location.reload();
     };
 
     function handleLogout() {
         setAuthenticated(false);
+
         localStorage.removeItem('token');
         api.defaults.headers.Authorization = undefined;
+
         history.push('/iniciarsessao');
+        window.location.reload();
     };
 
     return { authenticated, handleLogin, handleLogout, loading };

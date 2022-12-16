@@ -3,8 +3,7 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/AuthContext";
 
 export default function FormLogin () {
-    const { authenticated, handleLogin } = useContext(Context);
-    console.debug(authenticated)
+    const { handleLogin } = useContext(Context);
 
     const [ form, setForm ] = useState({
         email: "",
@@ -29,8 +28,7 @@ export default function FormLogin () {
 
         if(!emptyValues){
             handleLogin(form)
-            .then((res) => { 
-                //redirecionar
+            .then((res) => {
             }).catch((error) => {
 
                 if(error.response.status === 403){
@@ -46,11 +44,11 @@ export default function FormLogin () {
                 <h1>Login</h1>
                 { errorLogin !== "" ? <span className='text-wite'>{errorLogin}</span> : ''}
                 <div className="form-Login">
-                    <input type="email" name="email" placeholder="E-mail" id="loginemail" onBlur={(e) => handleChange(e)} />
+                    <input type="email" name="email" placeholder="E-mail" id="loginemail" onChange={(e) => handleChange(e)} />
                     { emptyValue && form["email"] === "" ? <span className='text-wite'>É necessário informar o E-mail</span> : ''}
                 </div>
                 <div className="form-Login">
-                    <input type="password" name="senha" placeholder="Senha" id="loginsenha" onBlur={(e) => handleChange(e)} />
+                    <input type="password" name="senha" placeholder="Senha" id="loginsenha" onChange={(e) => handleChange(e)} />
                     { emptyValue && form["senha"] === ""? <span className='text-wite'>É necessário informar a Senha</span> : ''}
                 </div>
                 <a href="#">Esqueceu sua senha?</a>

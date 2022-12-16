@@ -13,9 +13,9 @@ export default function homeUser () {
                     <div className="row row-cols-6 justify-content-center mt-5">
 
                         <LinkUser icon="bi bi-box-seam" titulo="Meus Pedidos" descricao="Rastrear Seus Pedidos ou Comprar  Novamente" />
-                        <LinkUser icon="bi bi-shield" titulo="Acesso e Segurança" descricao="Alterar Nome ou Senha" />
+                        <LinkUser icon="bi bi-shield" titulo="Acesso e Segurança" descricao="Alterar Nome ou Senha" link="/user/seguranca" />
                         <LinkUser icon="bi bi-house" titulo="Meus Endereços" descricao="Cadastrar novos endereços ou alterá-los" />
-                        <LinkUser icon="bi bi-credit-card" titulo="Formas de Pagamentos" descricao="Gerenciar formas <br/> de pagamento" />
+                        <LinkUser icon="bi bi-credit-card" titulo="Formas de Pagamentos" descricao="Gerenciar formas de pagamento" />
 
                     </div>
                 </div>

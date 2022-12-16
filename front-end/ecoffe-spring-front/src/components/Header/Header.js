@@ -7,7 +7,7 @@ import './header.css';
 
 export default function Header () {
 
-    const { authenticated } = useContext(Context);
+    const { authenticated, handleLogout } = useContext(Context);
     const [ nomeUsuario, setNomeUsuario ] = useState('');
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function Header () {
     }, [authenticated]);
 
     return (
-        <nav className="navbar navbar-expand-lg bg-primary-color">
+        <nav className="navbar navbar-expand-lg bg-primary-color" id="navbar">
             <div className="container">
                 <Link className="navbar-brand ms-3" to="/"><img src={require("../../images/E- COFFEE 3.png")} alt="E-Coffee" id="banner-home"/></Link>
 
@@ -44,20 +44,31 @@ export default function Header () {
                             </form>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white" to="/">Cafeteira<i className="bi bi-chevron-down"></i></Link>
+                            <Link className="nav-link text-white" id="link-cafeteiras" to="/">Cafeteiras</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white" to="/">Cápsulas<i className="bi bi-chevron-down"></i></Link>
+                            <Link className="nav-link text-white" to="/">Cápsulas</Link>
                         </li>
-                        <li className="nav-item">
-                            { nomeUsuario !== '' ? <Link className="nav-link text-white" to="/user/home">Olá, {nomeUsuario}</Link> 
-                                : <Link className="nav-link text-white" to="/iniciarsessao">Login</Link>
-                            }
-                            
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-white" to="/"><i className="bi bi-cart2" id="cart-icon"></i></Link>
-                        </li>
+                        { nomeUsuario !== '' ? 
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white dropdown-toggle-split" data-bs-toggle="dropdown">Olá, {nomeUsuario}<i className="bi bi-chevron-down"></i></Link>
+
+                                <ul className="dropdown-menu" style={{left: "auto", top: "96%"}}>
+                                    <li><Link className="dropdown-item btn text-wite mt-2" to="/user/home">Minha Conta</Link></li>
+                                    <li><button className="dropdown-item btn text-wite mt-3" type="button" onClick={ () => handleLogout() }>Sair</button></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/"><i className="bi bi-cart2" id="cart-icon"></i></Link>
+                            </li>
+                            </>
+                            :
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/iniciarsessao" style={{width: 'auto'}}>Realize o Login ou Cadastre-se</Link>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
