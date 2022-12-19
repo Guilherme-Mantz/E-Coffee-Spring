@@ -7,6 +7,7 @@ import Index from '../pages/index/Index';
 import LoginPage from '../pages/login/LoginPage';
 import HomeUser from '../pages/userPages/homeUser/homeUser';
 import SecurityUser from '../pages/userPages/securityUser/SecurityUser';
+import SecurityUserForm from '../pages/userPages/securityUserForm/SecurityUserForm';
 
 function CustomRoute({ isPrivate, notLogged, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -33,7 +34,8 @@ export default function Router() {
       <CustomRoute exact path='/' component={Index} />
       <CustomRoute notLogged path='/iniciarsessao' component={LoginPage} />
       <CustomRoute isPrivate path='/user/home' component={HomeUser} />
-      <CustomRoute isPrivate path='/user/seguranca' component={SecurityUser} />
+      <CustomRoute isPrivate exact path='/user/seguranca' component={SecurityUser} />
+      <CustomRoute isPrivate exact path='/user/seguranca/editar' component={SecurityUserForm} />
     </Switch>
   );
 };

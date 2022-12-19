@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Enumerated"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EnumType"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
@@ -59,4 +57,7 @@
     <fullyQualifiedTypeName name="br.com.ecoffee.dto.cliente.ClienteDto"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestHeader"/>
+    <fullyQualifiedTypeName name="org.springframework.cache.annotation.EnableCaching"/>
+    <fullyQualifiedTypeName name="org.springframework.cache.annotation.Cacheable"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

@@ -5,7 +5,8 @@ import history from '../history';
 
 export default function useAuth() {
     const [ authenticated, setAuthenticated ] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [ loading, setLoading ] = useState(true);
+    const [ dataCliente, seDataCliente ] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -17,6 +18,14 @@ export default function useAuth() {
     
         setLoading(false);
     }, []);
+
+    useEffect(() => {
+        if(authenticated){
+            api.get('/cliente/get/data').then((res) => { 
+                seDataCliente(res.data);
+            });
+        }
+    }, [authenticated])
 
     async function handleLogin(form){
         const { data: { token } } = await api.post("/auth", form);
@@ -40,5 +49,5 @@ export default function useAuth() {
         window.location.reload();
     };
 
-    return { authenticated, handleLogin, handleLogout, loading };
+    return { authenticated, handleLogin, dataCliente ,handleLogout, loading };
 };

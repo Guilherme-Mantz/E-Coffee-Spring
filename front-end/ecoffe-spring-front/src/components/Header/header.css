@@ -38,6 +38,10 @@ nav {
 .dropdown-menu {
     background-color: #291616;
     border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid  #CE5F20;
+    border-top: 0;
     text-align: center;
 }
 

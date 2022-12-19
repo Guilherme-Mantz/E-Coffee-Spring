@@ -1,24 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 import { Link } from 'react-router-dom';
-import api from '../../hook/api';
 
 import './header.css';
 
 export default function Header () {
 
-    const { authenticated, handleLogout } = useContext(Context);
-    const [ nomeUsuario, setNomeUsuario ] = useState('');
-
-    useEffect(() => {
-    
-        if (authenticated) {
-            api.get('/cliente/get/data').then((res) => { 
-                setNomeUsuario(res.data.nome);
-            });
-        };
-    
-    }, [authenticated]);
+    const { dataCliente, handleLogout } = useContext(Context);
 
     return (
         <nav className="navbar navbar-expand-lg bg-primary-color" id="navbar">
@@ -49,12 +37,12 @@ export default function Header () {
                         <li className="nav-item">
                             <Link className="nav-link text-white" to="/">Cápsulas</Link>
                         </li>
-                        { nomeUsuario !== '' ? 
+                        { dataCliente !== null ? 
                             <>
                             <li className="nav-item">
-                                <Link className="nav-link text-white dropdown-toggle-split" data-bs-toggle="dropdown">Olá, {nomeUsuario}<i className="bi bi-chevron-down"></i></Link>
+                                <Link to='#' className="nav-link text-white dropdown-toggle-split" data-bs-toggle="dropdown">Olá, {dataCliente.nome}<i className="bi bi-chevron-down"></i></Link>
 
-                                <ul className="dropdown-menu" style={{left: "auto", top: "96%"}}>
+                                <ul className="dropdown-menu" style={{left: "auto", top: "99%"}}>
                                     <li><Link className="dropdown-item btn text-wite mt-2" to="/user/home">Minha Conta</Link></li>
                                     <li><button className="dropdown-item btn text-wite mt-3" type="button" onClick={ () => handleLogout() }>Sair</button></li>
                                 </ul>

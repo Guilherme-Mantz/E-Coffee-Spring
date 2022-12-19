@@ -1,0 +1,10 @@
+#lista-informacoes {
+    background-color: #FFF1E0;
+    border-radius: 12px;
+    border: 1px solid #CE5F20;
+}
+
+.list-group-item {
+    background-color: #0000;
+    border-bottom: 1px solid #2c2c2c;
+}
