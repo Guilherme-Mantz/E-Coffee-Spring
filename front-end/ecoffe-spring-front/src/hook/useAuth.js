@@ -21,6 +21,7 @@ export default function useAuth() {
 
     useEffect(() => {
         if(authenticated){
+            
             api.get('/cliente/get/data').then((res) => { 
                 seDataCliente(res.data);
             });

@@ -68,7 +68,7 @@ public class AtualizarClienteForm {
 		cliente.setCpf(this.cpf);
 		cliente.setEmail(this.email);
 		
-		if(!this.senha.isEmpty()) {
+		if(this.senha != null) {
 			cliente.setSenha(BcryptUtil.getHash(senha));
 		}
 		
