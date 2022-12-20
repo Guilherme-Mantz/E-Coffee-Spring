@@ -1,0 +1,11 @@
+.card-adress {
+    background-color: #FFF1E0;
+    border: 1px solid #CE5F20;
+    border-radius: 10px;
+    height: 15rem;
+    width: 20rem;
+}
+
+#adress-information {
+    list-style: none;
+}

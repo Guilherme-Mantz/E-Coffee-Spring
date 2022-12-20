@@ -1,0 +1,12 @@
+#link-addAdres {
+    background-color: #CE5F20;
+    border-radius: 10px;
+    height: 15rem;
+    text-decoration: none;
+    width: 15rem;
+}
+
+.bi-plus-lg {
+    font-size: 90px;
+    color: #000;
+}
