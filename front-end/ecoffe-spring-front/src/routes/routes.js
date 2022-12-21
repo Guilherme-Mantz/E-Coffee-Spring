@@ -5,6 +5,7 @@ import { Context } from '../context/AuthContext';
 
 import Index from '../pages/index/Index';
 import LoginPage from '../pages/login/LoginPage';
+import AdresFormUser from '../pages/userPages/adresFormUser/AdresFormUser';
 import AdressesUser from '../pages/userPages/adressesUser/AdressesUser';
 import HomeUser from '../pages/userPages/homeUser/homeUser';
 import SecurityUser from '../pages/userPages/securityUser/SecurityUser';
@@ -38,6 +39,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/seguranca' component={SecurityUser} />
       <CustomRoute isPrivate exact path='/user/seguranca/editar' component={SecurityUserForm} />
       <CustomRoute isPrivate exact path='/user/enderecos' component={AdressesUser} />
+      <CustomRoute isPrivate exact path='/user/enderecos/novo' component={AdresFormUser} />
     </Switch>
   );
 };

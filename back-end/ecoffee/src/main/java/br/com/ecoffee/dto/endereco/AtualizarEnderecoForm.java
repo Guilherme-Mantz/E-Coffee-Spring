@@ -93,7 +93,9 @@ public class AtualizarEnderecoForm {
 
 		endereco.setUf(uf);
 
-		endereco.setComplemento(complemento);
+		if(complemento != null) {
+			endereco.setComplemento(complemento);
+		}
 
 		return endereco;
 	}

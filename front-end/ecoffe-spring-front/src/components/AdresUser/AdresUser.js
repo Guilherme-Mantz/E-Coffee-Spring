@@ -4,16 +4,16 @@ import './AdresUser.css'
 
 export default function AdresUser(props) {
 
-    const { nomeDoEndereco, logradouro, numeroResidencial, bairro, cep, cidade, estado, uf, complemento} = props;
+    const { nomeEndereco, logradouro, numeroResidencia, bairro, cep, cidade, uf, complemento} = props.adres;
 
     return (
         <div className='card-adress p-4 ms-5'>
-            <h5 className='fw-bold text-center'>{nomeDoEndereco}</h5>
+            <h5 className='fw-bold text-center'>{nomeEndereco}</h5>
             <ul className='list-group' id='adress-information'>
-                <li>{logradouro}, N° {numeroResidencial}</li>
+                <li>{logradouro}, N° {numeroResidencia}</li>
                 <li>{bairro}</li>
                 <li>{cep}</li>
-                <li>{cidade}, {estado}, {uf}</li>
+                <li>{cidade}, {uf}</li>
                 <li>Complemento: {complemento}</li>
 
                 <li className='d-flex justify-content-between' style={{ listStyle: 'none' }}>
