@@ -1,23 +1,25 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import api from '../../../hook/api';
 import { Context } from '../../../context/AuthContext';
+import api from '../../../hook/api';
+import history from '../../../history';
 
 import Header from '../../../components/Header/Header';
 import Footer from '../../../components/Footer/Footer';
 
 import './AdresFormUser.css';
-import history from '../../../history';
 
 export default function AdresFormUser () {
 
     const { dataCliente } = useContext(Context);
 
     const [ emptyValue, setEmptyValue ] = useState(false);
+    const [ errorCep, setErrorCep ] = useState(false);
     const [ form, setForm ] = useState({
         nomeEndereco: "",
-        cep: "", //implementar VIACEP, *Validar numeros*
+        cep: "",
         logradouro: "",
         numeroResidencia: "",
         bairro: "",
@@ -26,11 +28,53 @@ export default function AdresFormUser () {
         complemento: ""
     });
 
-    function handleChange(e){
+    async function handleChange(e){
         let newProp = form;
 
         newProp[e.target.name] = e.target.value;
         setForm({ ...newProp })
+
+        if(form['cep'].length === 8){
+
+            const rua = document.getElementById('logradouro');
+            const bairroForm = document.getElementById('bairro');
+            const cidadeForm = document.getElementById('cidade');
+            const estadoForm = document.getElementById('estado');
+
+            const URL = `https://viacep.com.br/ws/${form['cep']}/json/`;
+
+            await axios.get(URL).then((res) => {
+
+                if(res.data.erro){
+                    setErrorCep(true)
+                }
+                else {
+                    const { logradouro, bairro, localidade, uf } = res.data;
+
+                    setErrorCep(false)
+
+                    rua.value = logradouro;
+                    bairroForm.value = bairro;
+                    cidadeForm.value = localidade;
+                    estadoForm.value = uf;
+
+                    setForm({ nomeEndereco: form['nomeEndereco'],
+                        cep: form["cep"], 
+                        numeroResidencia: form['numeroResidencia'],
+                        logradouro: logradouro,  
+                        bairro: bairro, 
+                        cidade: localidade, 
+                        uf: uf
+                    });
+                };
+
+            }).finally(() => {
+                rua.removeAttribute("disabled");
+                bairroForm.removeAttribute("disabled");
+                cidadeForm.removeAttribute("disabled");
+                estadoForm.removeAttribute("disabled");
+            });
+        };
     };
 
     async function handleCadaster(e){
@@ -40,7 +84,7 @@ export default function AdresFormUser () {
         let emptyValues = Object.values(form).some(obj => obj === "");
         setEmptyValue(emptyValues);
 
-        if(!emptyValues || form["complemento"] == ''){
+        if((!emptyValues && errorCep === false ) || form["complemento"] === ''){
 
             await api.post(`/endereco/cadastrar/${dataCliente.idCliente}`, form)
             .then((res) => { 
@@ -73,6 +117,7 @@ export default function AdresFormUser () {
                                 <label htmlFor="cep" className='fw-bold'>Cep:</label>
                                 <input type="text" className="form-control w-50" id="cep" name='cep' maxLength='8' placeholder='12345678' onChange={(e) => handleChange(e)}/>
                                 { emptyValue && form["cep"] === "" ? <span>É necessário informar o cep!</span> : ''}
+                                { errorCep ? <span>Cep inválido!</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
@@ -80,7 +125,7 @@ export default function AdresFormUser () {
                                 <label htmlFor="numeroResidencia" style={{marginLeft: '42%'}} className='fw-bold'>Número:</label>
 
                                 <div className='d-flex'>
-                                    <input type="text" className="form-control w-50" id="logradouro" name='logradouro' placeholder='Rua fulano' onChange={(e) => handleChange(e)}/>
+                                    <input type="text" className="form-control w-50" id="logradouro" name='logradouro' placeholder='Rua fulano' disabled onChange={(e) => handleChange(e)}/>
                                     <input type="text" className="form-control ms-4" style={{width: "10%"}} id="numeroResidencia" name='numeroResidencia' placeholder='20' onChange={(e) => handleChange(e)}/>
                                 </div>
                                 { emptyValue && form["logradouro"] === "" ? <span>É necessário informar o logradouro!</span> : ''}
@@ -89,7 +134,7 @@ export default function AdresFormUser () {
 
                             <li className="list-group-item mx-4">
                                 <label htmlFor='bairro' className='fw-bold'>Bairro:</label> 
-                                <input type="text" className="form-control w-50" id="bairro" name='bairro' placeholder='Bairro sudeste' onChange={(e) => handleChange(e)}/>
+                                <input type="text" className="form-control w-50" id="bairro" name='bairro' placeholder='Bairro sudeste' disabled onChange={(e) => handleChange(e)}/>
                                 { emptyValue && form["bairro"] === "" ? <span>É necessário informar o bairro!</span> : ''}
                             </li>
 
@@ -98,8 +143,8 @@ export default function AdresFormUser () {
                                 <label htmlFor='estado' className='fw-bold' style={{marginLeft: '46%'}}>Estado:</label>
 
                                 <div className='d-flex'>
-                                    <input type="text" className="form-control w-50" id="cidade" name='cidade' placeholder='Pindamonhangaba' onChange={(e) => handleChange(e)}/>
-                                    <input type="text" className="form-control ms-4" id="estado" name='uf' placeholder='SP' maxLength='2' style={{width: "10%"}} onChange={(e) => handleChange(e)}/>
+                                    <input type="text" className="form-control w-50" id="cidade" name='cidade' placeholder='Pindamonhangaba' disabled onChange={(e) => handleChange(e)}/>
+                                    <input type="text" className="form-control ms-4" id="estado" name='uf' placeholder='SP' maxLength='2' style={{width: "10%"}} disabled onChange={(e) => handleChange(e)}/>
                                 </div>
                                 { emptyValue && form["cidade"] === "" ? <span>É necessário informar a cidade!</span> : ''}
                                 { emptyValue && form["uf"] === "" ? <span style={{marginLeft: '27%'}}>É necessário informar o estado!</span> : ''}

@@ -54,10 +54,10 @@ public class EnderecoController {
 		
 	}
 	
-	@DeleteMapping("deletar/{idEndereco}")
-	public ResponseEntity<?> deletarEnderecoPeloId(@PathVariable Long idEndereco){
+	@DeleteMapping("deletar/{idCliente}/{idEndereco}")
+	public ResponseEntity<?> deletarEnderecoPeloId(@PathVariable Long idCliente,@PathVariable Long idEndereco){
 		
-		Optional<Endereco> endereco = enderecoService.buscarEnderecoPeloId(idEndereco);
+		Optional<Endereco> endereco = enderecoService.buscarEnderecoPeloId(idCliente ,idEndereco);
 		if(endereco.isPresent()) {
 			
 			enderecoService.deletarEndereco(idEndereco);

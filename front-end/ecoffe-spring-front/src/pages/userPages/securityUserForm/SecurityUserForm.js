@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cpf } from 'cpf-cnpj-validator';
 
@@ -45,7 +45,7 @@ export default function SecurityUserForm () {
         let validEmail = form["email"].toLocaleLowerCase().match(/[a-z]+@[a-z]+\.com(\.br)*/);
         setValidEmail(validEmail);
 
-        if(!emptyValues && validEmail && validCpf || form['senha']){
+        if((!emptyValues && validEmail && validCpf) || form['senha']){
 
             await api.put(`/cliente/atualizar/${dataCliente.idCliente}`, form)
             .then((res) => { 

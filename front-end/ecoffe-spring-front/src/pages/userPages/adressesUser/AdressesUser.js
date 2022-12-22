@@ -1,13 +1,14 @@
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../../../components/Header/Header';
 import Footer from '../../../components/Footer/Footer';
 import AdresUser from '../../../components/AdresUser/AdresUser';
 
-import './AdressesUser.css';
-import { useContext, useEffect, useState } from 'react';
 import api from '../../../hook/api';
 import { Context } from '../../../context/AuthContext';
+
+import './AdressesUser.css';
 
 export default function AdressesUser () {
 
@@ -26,8 +27,6 @@ export default function AdressesUser () {
         };
     }
 
-    console.log(enderecos)
-
     return (
         <>
         <Header/>
@@ -42,7 +41,7 @@ export default function AdressesUser () {
                             </Link> 
                         : ''}
 
-                        { enderecos !== [] && enderecos.map((endereco) => <AdresUser key={endereco.idEndereco} adres={endereco} />) }
+                        { enderecos !== [] && enderecos.map((endereco) => <AdresUser key={endereco.idEndereco} adres={endereco} user={dataCliente !== undefined && dataCliente.idCliente} />) }
                     </div>
                 </div>
             </main>

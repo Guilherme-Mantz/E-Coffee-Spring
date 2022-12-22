@@ -69,11 +69,11 @@ export default function FormRegistro () {
             })
             .catch((error) => {
 
-                if(error.response.data.campo == "email" ){
+                if(error.response.data.campo === "email" ){
                     setErrorEmail({status: true, error: error.response.data.erro});
                 };
 
-                if(error.response.data.campo == "cpf" ){
+                if(error.response.data.campo === "cpf" ){
                     setErrorCpf({status: true, error: error.response.data.erro});
                 };
             })
