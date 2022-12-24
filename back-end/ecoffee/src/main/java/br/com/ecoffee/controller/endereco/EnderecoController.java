@@ -38,6 +38,15 @@ public class EnderecoController {
 		return enderecos;
 	}
 	
+	@GetMapping("buscar/{idCliente}/{idEndereco}")
+	public EnderecoDto buscarEnderecoPeloIdClienteAndIdEndereco(@PathVariable Long idCliente, @PathVariable Long idEndereco) {
+		
+		Endereco enderecoEncontrado = enderecoService.buscarEnderecoPeloIdClienteAndIdEndereco(idCliente, idEndereco).get();
+		EnderecoDto endereco = new EnderecoDto(enderecoEncontrado);
+		
+		return endereco;
+	}
+	
 	@PostMapping("cadastrar/{idCliente}")
 	public ResponseEntity<EnderecoDto> cadastrarEnderecoPeloIdCliente(@PathVariable Long idCliente, @RequestBody @Valid EnderecoForm enderecoForm, UriComponentsBuilder uriBuilder){
 		Endereco endereco = enderecoService.cadastrarEndereco(idCliente, enderecoForm);
@@ -57,7 +66,7 @@ public class EnderecoController {
 	@DeleteMapping("deletar/{idCliente}/{idEndereco}")
 	public ResponseEntity<?> deletarEnderecoPeloId(@PathVariable Long idCliente,@PathVariable Long idEndereco){
 		
-		Optional<Endereco> endereco = enderecoService.buscarEnderecoPeloId(idCliente ,idEndereco);
+		Optional<Endereco> endereco = enderecoService.buscarEnderecoPeloIdClienteAndIdEndereco(idCliente ,idEndereco);
 		if(endereco.isPresent()) {
 			
 			enderecoService.deletarEndereco(idEndereco);

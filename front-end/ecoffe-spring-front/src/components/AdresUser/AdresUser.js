@@ -23,7 +23,7 @@ export default function AdresUser(props) {
                 <li>Complemento: {complemento}</li>
 
                 <li className='d-flex justify-content-between' style={{ listStyle: 'none' }}>
-                    <Link className='btn mt-2' to='#' id="btn-primary" style={{ width: "max-content" }}>Alterar</Link>
+                    <Link className='btn mt-2' to={`/user/enderecos/alterar/${idEndereco}`} id="btn-primary" style={{ width: "max-content" }}>Alterar</Link>
                     <button className='btn mt-2' id="btn-primary" style={{ width: "max-content", marginLeft: "10%" }} onClick={() => handleRemove()}>Excluir</button>
                 </li>
             </ul>

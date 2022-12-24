@@ -46,7 +46,7 @@ public class EnderecoService {
 		return enderecoCadastrado;
 	}
 
-	public Optional<Endereco> buscarEnderecoPeloId(Long idCliente,Long idEndereco) {
+	public Optional<Endereco> buscarEnderecoPeloIdClienteAndIdEndereco(Long idCliente,Long idEndereco) {
 		return enderecoRepository.findByIdClienteAndIdEndereco(idCliente, idEndereco);
 	}
 

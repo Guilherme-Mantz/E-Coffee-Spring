@@ -40,6 +40,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/seguranca/editar' component={SecurityUserForm} />
       <CustomRoute isPrivate exact path='/user/enderecos' component={AdressesUser} />
       <CustomRoute isPrivate exact path='/user/enderecos/novo' component={AdresFormUser} />
+      <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
     </Switch>
   );
 };
