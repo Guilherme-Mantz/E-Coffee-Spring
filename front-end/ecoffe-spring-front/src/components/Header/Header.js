@@ -32,10 +32,10 @@ export default function Header () {
                             </form>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white" id="link-cafeteiras" to="/">Cafeteiras</Link>
+                            <Link className="nav-link text-white" id="link-cafeteiras" to="/produtos/cafeteira">Cafeteiras</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white" to="/">Cápsulas</Link>
+                            <Link className="nav-link text-white" to="/produtos/capsula">Cápsulas</Link>
                         </li>
                         { dataCliente !== null ? 
                             <>

@@ -1,0 +1,32 @@
+/*=========== CARDS ===========*/
+#link-product {
+    color: black;
+    text-decoration: none;
+}
+
+#link-product:hover{
+    color: #CE5F20;
+}
+
+#card-produto {
+    border: 0;
+    margin: 10px 20px 60px 20px;
+    max-height: 30em;
+    width: 18rem;
+}
+
+#card-produto:hover {
+    border-radius: 25px;
+    box-shadow: 5px 8px 27px 6px rgba(112,112,112,0.78);
+    -webkit-box-shadow: 5px 8px 27px 6px rgba(112,112,112,0.78); 
+}
+
+#card-produto #img-card {
+    width: 215px;
+}
+
+#card-produto .card-body .card-text {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}

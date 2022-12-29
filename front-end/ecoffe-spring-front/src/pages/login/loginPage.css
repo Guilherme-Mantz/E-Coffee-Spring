@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #E3D1BF;
-}
-
 .body-login {
     display: flex;
     justify-content: center;

@@ -44,6 +44,7 @@ public class SecurityConfigurations {
 		http.cors().and().authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/cliente/cadastrar").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers(HttpMethod.GET, "/produto/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

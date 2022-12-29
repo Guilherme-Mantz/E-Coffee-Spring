@@ -24,6 +24,12 @@ export default function useAuth() {
             
             api.get('/cliente/get/data').then((res) => { 
                 seDataCliente(res.data);
+            })
+            .catch((err) => {
+                if(err.response.status === 403){
+                    localStorage.removeItem('token');
+                    setAuthenticated(false);
+                };
             });
         }
     }, [authenticated])

@@ -1,0 +1,18 @@
+INSERT INTO produtos VALUES (
+	  idProduto: null,
+	  nome_produto: 'Cafeteira Eletrica Mondial Arome Inox C-34 Ji 15 Xicaras Preta 220v',
+      sku: 'C-34',
+      codigo_de_barra: '123456789123',
+      status_produto: 'EM_ESTOQUE',
+      categoria: 1,
+      descricao_produto: 'Cafeteira Elétrica Dolce Arome Inox C-34 Ji 15 Xicaras Preta 220v',
+      informacoes_tecnicas: 'Indicador de nível de água## Porta-filtro removível## 15 xícaras## Sistema corta pingos## Jarra inox simples## Voltagem: 220 V## Potência: 550 W## Consumo: 0,55 Kw/h## Garantia do Fornecedor 12 meses## Peso: 1150 gramas (bruto com embalagem)',
+      peso: 1.15,
+      preco: 214.56,
+      custo: 214.56,
+      titulo_na_pagina: 'Cafeteira Eletrica Mondial Arome Inox C-34 Ji 15 Xicaras Preta 220v',
+      palavras_chave: 'Cafeteira Eletrica Mondial Arome Inox C-34 Ji 15 Xicaras Preta 220v',
+      quantidadeEstoque: '50',
+      imagem: '/mnt/0e371f7a-f26e-4f47-a37b-2d461ede9e36/Pessoal/Workspace/Ecoffee-Spring/images/uploads/imagem-1644509973935-.jpg',
+      miniaturaUm: '/mnt/0e371f7a-f26e-4f47-a37b-2d461ede9e36/Pessoal/Workspace/Ecoffee-Spring/images/uploads/miniaturaUm-1644509973937-.jpg',
+      miniaturaDois: '/mnt/0e371f7a-f26e-4f47-a37b-2d461ede9e36/Pessoal/Workspace/Ecoffee-Spring/images/uploads/miniaturaDois-1644509973938-.jpg');

@@ -21,6 +21,7 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(columnDefinition = "serial")
 	private Long idProduto;
 
 	@Column(name = "nome_produto", nullable = false, length = 200)
@@ -40,10 +41,10 @@ public class Produto {
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
-	@Column(name = "descricao_produto", nullable = false)
+	@Column(name = "descricao_produto", nullable = false, columnDefinition = "TEXT")
 	private String descricaoProduto;
 
-	@Column(name = "informacoes_tecnicas", nullable = false)
+	@Column(name = "informacoes_tecnicas", nullable = false, columnDefinition = "TEXT")
 	private String informacoesTecnicas;
 
 	@Column(nullable = false)
@@ -64,13 +65,13 @@ public class Produto {
 	@Column(nullable = false)
 	private Long quantidadeEstoque;
 
-	@Column(nullable = false, length = 200)
+	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
 	private String imagem;
 
-	@Column(nullable = false, length = 200)
+	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
 	private String miniaturaUm;
 
-	@Column(nullable = false, length = 200)
+	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
 	private String miniaturaDois;
 
 	public Long getIdProduto() {

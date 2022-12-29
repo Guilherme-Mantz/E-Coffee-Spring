@@ -62,7 +62,7 @@ export default function AdresFormUser () {
     };
 
     useEffect(() => {
-        if(form['cep'].length === 8 && (isEditing && form['logradouro'] === "" )){
+        if(form['cep'].length === 8 && !isEditing){
 
             const rua = document.getElementById('logradouro');
             const bairroForm = document.getElementById('bairro');

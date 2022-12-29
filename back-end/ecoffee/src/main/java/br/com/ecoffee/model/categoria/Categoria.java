@@ -1,5 +1,6 @@
 package br.com.ecoffee.model.categoria;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,12 +11,15 @@ public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(columnDefinition = "serial")
 	private Long idCategoria;
-	private String categoria;
-
-	public Categoria(Long idCategoria, String categoria) {
+	private String nome;
+	
+	public Categoria() {}
+	
+	public Categoria(Long idCategoria, String nome) {
 		this.idCategoria = idCategoria;
-		this.categoria = categoria;
+		this.nome = nome;
 	}
 
 	public Long getIdCategoria() {
@@ -26,12 +30,12 @@ public class Categoria {
 		this.idCategoria = idCategoria;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

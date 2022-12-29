@@ -4,10 +4,14 @@
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="/mnt/0e371f7a-f26e-4f47-a37b-2d461ede9e36/Pessoal/Workspace/Ecoffee-Spring/images/uploads/"/>
+			<item value="images/uploads/imagemDoProduto/"/>
 			<item value="buscarEnderecoPeloId"/>
 		</list>
 		<list key="replacehistory">
+			<item value="/mnt/0e371f7a-f26e-4f47-a37b-2d461ede9e36/Pessoal/Workspace/Ecoffee-Spring/images/uploads/"/>
 		</list>
 	</section>
 </section>

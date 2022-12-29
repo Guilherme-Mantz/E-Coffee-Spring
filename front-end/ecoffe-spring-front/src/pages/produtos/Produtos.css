@@ -1,0 +1,24 @@
+.filtro{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #291616;
+    border-radius: 5px;
+    background-image: url(../../images/bACKGROUNS\ 1.png);
+    width: 245px;
+    align-items: start;
+    padding-left: 10px;
+    height: 650px;
+    justify-content: space-around;
+    
+}
+
+.filtro-marcas {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+.filtro-marcas .btn-marca{
+    padding-bottom: 5px;
+}

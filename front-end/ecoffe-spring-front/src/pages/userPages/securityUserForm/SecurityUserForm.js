@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cpf } from 'cpf-cnpj-validator';
 
@@ -15,11 +15,30 @@ export default function SecurityUserForm () {
 
     const { dataCliente } = useContext(Context);
 
-    const [ form, setForm ] = useState(dataCliente);
+    const [loading, setLoading] = useState(true);
+    const [ form, setForm ] = useState({
+        nome: "",
+        sobrenome: "",
+        telefone: "",
+        cpf: "",
+        email: "",
+        senha: ""
+    });
 
     const [ emptyValue, setEmptyValue ] = useState(false);
     const [ validEmail, setValidEmail ] = useState(false);
     const [ validCpf, setValidCpf ] = useState(true);
+
+    useEffect(() => {
+        if(dataCliente !== null){
+            setForm(dataCliente)
+            setLoading(false)
+        }
+    }, [dataCliente])
+
+    if(loading){
+        return <h2>Carregando dados...</h2>
+    };
 
     function handleChange(e){
         let newProp = form;
@@ -71,32 +90,32 @@ export default function SecurityUserForm () {
 
                             <li className="list-group-item mx-4 mt-2">
                                 <label htmlFor="nome" className='fw-bold'>Nome:</label>   
-                                <input type="text" className="form-control w-50" id="nome" name='nome' defaultValue={form !== null && form['nome']} onBlur={(e) => handleChange(e)}/>
+                                <input type="text" className="form-control w-50" id="nome" name='nome' defaultValue={form['nome'] !== '' && form['nome']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["nome"] === "" ? <span>É necessário informar o nome</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4 mt-2">
                                 <label htmlFor="sobrenome" className='fw-bold'>Sobrenome:</label>
-                                <input type="text" className="form-control w-50" id="sobrenome" name='sobrenome' defaultValue={form !== null && form['sobrenome']} onBlur={(e) => handleChange(e)}/>
+                                <input type="text" className="form-control w-50" id="sobrenome" name='sobrenome' defaultValue={form['sobrenome'] !== '' && form['sobrenome']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["sobrenome"] === "" ? <span>É necessário informar o Sobrenome</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
                                 <label htmlFor="telefone" className='fw-bold'>Telefone:</label>
-                                <input type="text" className="form-control w-50" id="telefone" name='telefone' defaultValue={form !== null && form['telefone']} onBlur={(e) => handleChange(e)}/>
+                                <input type="text" className="form-control w-50" id="telefone" name='telefone' defaultValue={form['telefone'] !== '' && form['telefone']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["telefone"] === ""? <span>É necessário informar o Telefone</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
                                 <label htmlFor='cpf' className='fw-bold'>CPF:</label> 
-                                <input type="text" className="form-control w-50" id="cpf" name='cpf' defaultValue={form !== null && form['cpf']} onBlur={(e) => handleChange(e)}/>
+                                <input type="text" className="form-control w-50" id="cpf" name='cpf' defaultValue={form['cpf'] !== '' && form['cpf']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["cpf"] === "" ? <span>É necessário informar o CPF</span> : ''}
                                 { !validCpf && form["cpf"] !== "" ? <span>CPF inválido </span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
                                 <label htmlFor='email' className='fw-bold'>E-mail:</label> 
-                                <input type="email" className="form-control w-50" id="email" name='email' defaultValue={form !== null && form['email']} onBlur={(e) => handleChange(e)}/>
+                                <input type="email" className="form-control w-50" id="email" name='email' defaultValue={form['email'] !== '' && form['email']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["email"] === "" ? <span>É necessário informar o E-mail</span> : ''}
                                 { !validEmail && form["email"] !== "" ? <span>E-mail inválido </span> : '' }
                             </li>

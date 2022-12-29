@@ -16,12 +16,19 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	public List<ProdutoDto> listarProdutos() {
-		//Criar Paginação
-		List<Produto> todosOsProdutos = produtoRepository.findAll();
-		List<ProdutoDto> produtosDtos = todosOsProdutos.stream().map(ProdutoDto::new).collect(Collectors.toList());
+	public List<ProdutoDto> listarProdutosEmDestaque() {
+		List<Produto> produtos = produtoRepository.findAll(); //Limitar para buscar 3 produtos de cada tipo
+		List<ProdutoDto> emDestaque = produtos.stream().map(ProdutoDto::new).collect(Collectors.toList());
 		
-		return produtosDtos;
+		return emDestaque;
+	}
+
+	//Criar paginação
+	public List<ProdutoDto> buscarProdutosPorCategoria(String categoria) {
+		List<Produto> produtos = produtoRepository.findByNomeCategoria(categoria);
+		List<ProdutoDto> produtosCategoria = produtos.stream().map(ProdutoDto::new).collect(Collectors.toList());
+		
+		return produtosCategoria;
 	}
 
 }
