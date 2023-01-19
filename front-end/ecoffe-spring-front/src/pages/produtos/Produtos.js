@@ -14,6 +14,8 @@ export default function Produtos () {
     const [ dataProduto, setDataProduto ] = useState();
     const [ loading, setLoading ] = useState(true);
 
+    const [ marcas, setMarcas ] = useState(new Set());
+
     useEffect(() => {
         api.get(`/produto/listar/${categoria}`).then((res) => { 
             setDataProduto(res.data);
@@ -23,6 +25,14 @@ export default function Produtos () {
         })
 
     }, [categoria])
+
+    useEffect(() => {
+        marcas.clear();
+    },[categoria]);
+
+    dataProduto?.map((p) => {
+        marcas.add(p.marca)
+    });
 
     if(loading){
         return <h2>Carregando produtos...</h2>
@@ -36,38 +46,20 @@ export default function Produtos () {
 
                     <div id='filtro-preco'>
                         <h5>Filtrar preço</h5>
-                        <select id="option-preco">
-                            <option value="" selected></option>
+                        <select defaultValue={"deault"} id="option-preco">
+                            <option value="deault"></option>
                             <option value="maior para o menor">Maior para o menor</option>
                             <option value="menor para o maior">Menor para o maior</option>
                         </select>
                     </div>
 
                     <div className="filtro-marcas" data-toggle="buttons">
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options1" id="option1" /> Mondial
-                        </label>
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options2" id="option2" /> Oster
-                        </label>
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options3" id="option3" /> Starbucks
-                        </label>
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options4" id="option4" />Philco
-                        </label>
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options5" id="option5" /> Lor
-                        </label>
-
-                        <label className="btn-marca">
-                            <input type="checkbox" name="options6" id="option6" /> Multilaser
-                        </label>
+                        
+                        {Array.from(marcas).map((marca) => 
+                            <label className="btn-marca" key={marca}>
+                                <input type="checkbox" name="options1" id="option1" />{marca}
+                            </label>)
+                        }
 
                     </div>
                 </div>

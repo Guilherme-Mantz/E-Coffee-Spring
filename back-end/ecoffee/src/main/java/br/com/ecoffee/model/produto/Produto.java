@@ -10,10 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.ecoffee.model.categoria.Categoria;
+import br.com.ecoffee.model.marca.Marca;
 
 @Entity
 @Table(name = "produtos")
@@ -65,14 +67,18 @@ public class Produto {
 	@Column(nullable = false)
 	private Long quantidadeEstoque;
 
-	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
+	@Column(nullable = false, length = 200)
 	private String imagem;
 
-	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
+	@Column(nullable = false, length = 200)
 	private String miniaturaUm;
 
-	@Column(nullable = false, length = 300, columnDefinition = "TEXT")
+	@Column(nullable = false, length = 200)
 	private String miniaturaDois;
+
+	@ManyToOne
+	@JoinColumn(name = "idMarca")
+	private Marca marca;
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -140,6 +146,10 @@ public class Produto {
 
 	public String getMiniaturaDois() {
 		return miniaturaDois;
+	}
+
+	public Marca getMarca() {
+		return marca;
 	}
 
 }

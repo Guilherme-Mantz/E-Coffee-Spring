@@ -1,10 +1,13 @@
 INSERT INTO categoria(nome) VALUES ('cafeteira'), ('capsula');
 
-INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_categoria, descricao_produto, informacoes_tecnicas, peso, preco, custo, titulo_na_pagina, palavras_chave, quantidade_estoque, imagem, miniatura_um, miniatura_dois) VALUES (
+INSERT INTO marca(marca) VALUES ('mondial'), ('baggio');
+
+INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_categoria, id_marca,descricao_produto, informacoes_tecnicas, peso, preco, custo, titulo_na_pagina, palavras_chave, quantidade_estoque, imagem, miniatura_um, miniatura_dois) VALUES (
 	  'Cafeteira Eletrica Mondial Arome Inox C-34 Ji 15 Xicaras Preta 220v',
       'C-34',
       '123456789123',
       'EM_ESTOQUE',
+      1,
       1,
       'Cafeteira Elétrica Dolce Arome Inox C-34 Ji 15 Xicaras Preta 220v',
       'Indicador de nível de água## Porta-filtro removível## 15 xícaras## Sistema corta pingos## Jarra inox simples## Voltagem: 220 V## Potência: 550 W## Consumo: 0,55 Kw/h## Garantia do Fornecedor 12 meses## Peso: 1150 gramas (bruto com embalagem)',
@@ -22,6 +25,7 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
       'C-32',
       '123456789123',
       'EM_ESTOQUE',
+      1,
       1,
       'Cafeteira Mondial Dolce Arome C-32-32X Inox - 220V## Tenha sempre um café delicioso e quentinho, com a cafeteira elétrica da Mondial. Veja! Para ter um café sempre quentinho e delicioso, basta ter um cafeteira que faz todo o processo para você, e a Mondial sempre traz as melhores tecnologias e inovações para o seu dia a dia. Faça até 32 xícaras de uma só vez. Sua família e amigos estarão sempre servidos com o melhor sabor e aroma do café!',
       'Marca: Mondial Modelo: C-32-32X Cor: Aço Inox Voltagem: 220V Potência: 800W Capacidade: 32 Xícaras Capacidade de água: 1L Filtro Permanente Dimensões da Embalagem: Altura: 33cm Largura: 29cm Profundidade: 29cm Peso: 3,500kg## Altura Real 33.6 ##Largura Real 26.4## Profundidade Real 21.5## Peso Real 1572## Garantia do Fornecedor 12 meses## Fabricante Mondial## Peso: 1750 gramas (bruto com embalagem)',
@@ -41,6 +45,7 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
       '123456789123',
       'EM_ESTOQUE',
       1,
+      1,
       'Compacta e leve, a nova Cafeteira da Mondial com design contemporâneo, foi desenvolvida para passar dois cafés na medida certa e direto na xícara, ótimo para um café rápido e saboroso.# É muito simples de usar, é só acrescentar o pó de café, a água na medida certa, ligar e pronto, você terá 1 ou 2 xícaras de cafés rapidamente. Ideal para todos os ambientes, com um toque de sofisticação.# O filtro permanente com porta-filtro removível dispensa o uso de filtro de papel e proporciona mais rapidez e praticidade na hora de preparar o café. A tampa basculante e bandeja removível antiderrapante - Facilidade na hora da limpeza e a bandeja antiderrapante evita que as xícaras escorreguem.# Proteção contra superaquecimento, liga/ desliga luminoso que indica o funcionamento. Basta usar a colher dosadora, escolher a quantidade de café, ligar a cafeteira e em instantes o seu café estará pronto.',
       'Motivos que Fazem valer a Pena# Filtro permanente e porta-filtro removível# Ideal para o preparo de cafés na medida certa# Liga/ Desliga luminoso# Base removível# Fácil limpeza e remoção dos resíduos# Acompanha colher dosadora# Acompanham 2 xícaras# Dimensões e Peso# Altura: 24,8 cm# Largura: 23 cm# Profundidade: 18 cm# 1,300 kg# Conteúdo da Embalagem# 01 Cafeteira Mondial 2 xícaras Smart Coffee C-42# 02 Xícaras de Porcelana# Manual de Instruções',
       1.3,
@@ -58,6 +63,7 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
         'cfp',
         '123456789123',
         'EM_ESTOQUE',
+        2,
         2,
         'Baggio Premium Caffé.Com é um café de intensidade forte com notas marcantes e um blend exclusivo para o seu dia-a-dia.## Nossas cápsulas são compatíveis com máquinas Nespresso®*.',
         'Características:## Tipo: 100% Coffea Arabica# Origem: Mogiana Paulista# Variedade: Premium Caffé.Com# Bebida: Apenas Mole# Torra: Escura# Intensidade: 11# Não contém açúcar e não contém glúten',
@@ -77,6 +83,7 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
         '123456789123',
         'EM_ESTOQUE',
         2,
+        2,
         'Baggio Aromas Chocolate Trufado é um café com aroma de trufas e chocolate da mais alta qualidade. Sinta leves toques de frutas secas, nozes e conhaque. Perfeito para momentos especiais.## Nossas cápsulas são compatíveis com máquinas Nespresso®*. ',
         'Características:## Tipo: 100% Coffea Arabica## Origem: Mogiana Paulista e Sul de Minas## Variedade: Especial Aromatizado Chocolate Trufado## Bebida: Mole## Torra: Média## Intensidade: 7## Não contém açúcar e não contém glúten',
         0.50,
@@ -94,6 +101,7 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
         'cfp-02',
         '123456789123',
         'EM_ESTOQUE',
+        2,
         2,
         'Baggio Café Clássico é um café equilibrado com notas frutadas, baixa acidez e corpo aveludado. Para finalizar, a torra média garante a acidez, açúcares e amargor balanceados, fazendo com que o Baggio Clássico mantenha seu perfeito equilíbrio.## As cápsulas são compatíveis com máquinas Nespresso®*.',
         'Características:## Tipo: 100% Coffea Arabica## Origem: Mogiana Paulista e Sul de Minas Gerais## Bebida: Mole## Torra: Média## Intensidade: 8## Cápsulas BPA Free (livre de Bisfenol A)## Não contém açúcar e não contém glúten',

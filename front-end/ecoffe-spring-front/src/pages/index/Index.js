@@ -32,7 +32,7 @@ export default function Index () {
             <main>
                 <div className="container">
                     <Carrossel/>
-                    <div className="row row-cols-3 justify-content-center mt-5">
+                    <div className="row row-cols-3 justify-content-center mt-5 ms-auto">
                         { isFetching && <h4>Carregando produtos</h4> }
                         {dataProdutos?.map((produto) => <CardProduto key={produto.idProduto} produto={produto}/>)}
                     </div>
