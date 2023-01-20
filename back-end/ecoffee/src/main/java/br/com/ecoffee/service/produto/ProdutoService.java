@@ -1,6 +1,7 @@
 package br.com.ecoffee.service.produto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class ProdutoService {
 		List<ProdutoDto> produtosCategoria = produtos.stream().map(ProdutoDto::new).collect(Collectors.toList());
 		
 		return produtosCategoria;
+	}
+	
+	public Optional<Produto> buscarProdutoPeloId(Long idProduto){
+		
+		return produtoRepository.findById(idProduto);
+
 	}
 
 }

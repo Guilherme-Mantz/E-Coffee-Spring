@@ -1,15 +1,19 @@
 package br.com.ecoffee.controller.produto;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ecoffee.dto.produto.DetalhesProdutoDto;
 import br.com.ecoffee.dto.produto.ProdutoDto;
+import br.com.ecoffee.model.produto.Produto;
 import br.com.ecoffee.service.produto.ProdutoService;
 
 @RestController
@@ -34,6 +38,20 @@ public class ProdutoController {
 		List<ProdutoDto> produtos = produtoService.listarProdutosEmDestaque();
 		
 		return produtos;
+	}
+	
+	@Cacheable("detalhes")
+	@GetMapping("/{idProduto}")
+	public ResponseEntity<DetalhesProdutoDto> listarInformacoesDoProduto (@PathVariable Long idProduto){
+		
+		Optional<Produto> produto = produtoService.buscarProdutoPeloId(idProduto);
+		
+		if(produto.isPresent()) {
+
+			return ResponseEntity.ok(new DetalhesProdutoDto(produto.get()));
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 }

@@ -6,6 +6,7 @@ import { Context } from '../context/AuthContext';
 import Index from '../pages/index/Index';
 import LoginPage from '../pages/login/LoginPage';
 import Produtos from '../pages/produtos/Produtos';
+import DetalhesProduto from '../pages/detalhesProduto/DetalhesProduto';
 import AdresFormUser from '../pages/userPages/adresFormUser/AdresFormUser';
 import AdressesUser from '../pages/userPages/adressesUser/AdressesUser';
 import HomeUser from '../pages/userPages/homeUser/homeUser';
@@ -43,6 +44,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/enderecos/novo' component={AdresFormUser} />
       <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
       <CustomRoute exact path='/produtos/:categoria' component={Produtos} />
+      <CustomRoute exact path='/produto/:idProduto' component={DetalhesProduto} />
     </Switch>
   );
 };
