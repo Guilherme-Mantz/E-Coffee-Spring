@@ -12,6 +12,7 @@ import AdressesUser from '../pages/userPages/adressesUser/AdressesUser';
 import HomeUser from '../pages/userPages/homeUser/homeUser';
 import SecurityUser from '../pages/userPages/securityUser/SecurityUser';
 import SecurityUserForm from '../pages/userPages/securityUserForm/SecurityUserForm';
+import Carrinho from '../pages/carrinho/Carrinho';
 
 function CustomRoute({ isPrivate, notLogged, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -45,6 +46,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
       <CustomRoute exact path='/produtos/:categoria' component={Produtos} />
       <CustomRoute exact path='/produto/:idProduto' component={DetalhesProduto} />
+      <CustomRoute notLogged exact path='/carrinho' component={Carrinho} />
     </Switch>
   );
 };

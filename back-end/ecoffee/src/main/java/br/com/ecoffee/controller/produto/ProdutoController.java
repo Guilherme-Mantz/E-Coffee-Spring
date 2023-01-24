@@ -47,7 +47,6 @@ public class ProdutoController {
 		Optional<Produto> produto = produtoService.buscarProdutoPeloId(idProduto);
 		
 		if(produto.isPresent()) {
-
 			return ResponseEntity.ok(new DetalhesProdutoDto(produto.get()));
 		}
 		

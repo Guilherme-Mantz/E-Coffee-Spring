@@ -1,0 +1,26 @@
+package br.com.ecoffee.model.carrinho;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.produto.Produto;
+
+@Entity
+public class Carrinho {
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "idProduto")
+	private Produto produto;
+	
+	private Integer quantidade;
+	
+}

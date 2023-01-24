@@ -1,0 +1,10 @@
+package br.com.ecoffee.service.carrinho;
+
+public class CarrinhoService {
+
+	public void inserirProduto(Long idProduto, Long idCliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

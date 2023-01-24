@@ -208,3 +208,27 @@ cursor: pointer;
 .titulo-descricao h5{
 	margin: 0;
 }
+
+/*========Carrinho========*/
+
+#head-table tr {
+	background-color: #F6EFE6;
+}
+
+#quantidade-produto{
+	background-color: #F6EFE6;
+	border: 1px solid #CEC9C9 !important;
+	height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+#body-table tr{
+	background-color: #F6EFE6B3;
+}
+
+#frete-section {
+	background-color: #F6EFE6B3;
+	border: 1px solid #CEC9C9 !important;
+	border-radius: 5px;
+}

@@ -1,0 +1,51 @@
+package br.com.ecoffee.model.carrinho;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.produto.Produto;
+
+@Entity
+public class Carrinho {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(columnDefinition = "serial")
+	private Long idCarrinho;
+
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+
+	@ManyToOne
+	@JoinColumn(name = "idProduto")
+	private Produto produto;
+
+	private Integer quantidade;
+
+	public Long getIdCarrinho() {
+		return idCarrinho;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+}

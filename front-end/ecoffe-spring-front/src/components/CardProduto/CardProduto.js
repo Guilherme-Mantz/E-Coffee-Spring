@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import { modedaBr } from '../../utils/formatCoinUtil';
+
 import './CardProduto.css'
 
 export default function CardProduto (props) {
@@ -12,7 +14,7 @@ export default function CardProduto (props) {
                 <img src={require('../../../../../images/uploads/'+imagem)} className="card-img-top mt-3" style={{height: "230px"}} id="img-card" alt={nomeProduto}/>
                 <div className="card-body">
                     <p className="card-text">{nomeProduto}</p>
-                    <p className="card-text">{preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                    <p className="card-text">{modedaBr(preco)}</p>
                 </div>
             </Link>
         </div>

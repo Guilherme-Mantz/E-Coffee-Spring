@@ -33,9 +33,7 @@ public class ProdutoService {
 	}
 	
 	public Optional<Produto> buscarProdutoPeloId(Long idProduto){
-		
 		return produtoRepository.findById(idProduto);
-
 	}
 
 }
