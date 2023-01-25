@@ -1,5 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+
+import { Context } from '../../context/AuthContext';
 
 import { modedaBr } from '../../utils/formatCoinUtil';
 
@@ -15,29 +17,33 @@ import ProdutoCarrinho from '../../components/ProdutoSelecionado/ProdutoCarrinho
 
 export default function Carrinho () {
 
-    // const { idProduto } = useParams();
+    const { dataCliente } = useContext(Context);
 
-    // const [ dataProduto, setDataProduto ] = useState();
-    // const [ loading, setLoading ] = useState(true);
+    const [ dataProduto, setDataProduto ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
 
-    // useEffect(() => {
-    //     api.get(`/produto/${idProduto}`)
-    //     .then((res) => {
-    //         setDataProduto(res.data);
-    //     })
-    //     .catch(() => {
-    //         history.push('/');
-    //         window.location.reload();
-    //     })
-    //     .finally(() => {
-    //         setLoading(false)
-    //     })
+    useEffect(() => {
+        if(dataCliente !== null){
+            api.get(`/carrinho/getdata/${dataCliente.idCliente}`)
+            .then((res) => {
+                setDataProduto(res.data);
+            })
+            .catch(() => {
+                history.push('/');
+                window.location.reload();
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+        }
 
-    // }, [idProduto])
+    }, [dataCliente])
 
-    // if(loading){
-    //     return <h2>Carregando produtos...</h2>
-    // }
+    if(loading){
+        return <h2>Carregando produtos...</h2>
+    }
+
+    let totalCompra = dataProduto.reduce((total, valor) => total + valor.preco * valor.quantidade, 0)
 
     return (
         <>
@@ -45,39 +51,53 @@ export default function Carrinho () {
         <main>
             <div className="container mt-5">
                 <h2 className="mb-4">Carrinho</h2>
-                <table className="table table-bordered">
-                    <thead id="head-table">
-                        <tr>
-                            <th scope="col" style={{width: "11%"}}></th>
-                            <th scope="col" className="w-50">Nome do Produto</th>
-                            <th scope="col" className="text-center" style={{width: "10%"}}>Preço unitário</th>
-                            <th scope="col" className="text-center" style={{width: "10%"}}>Qtd.</th>
-                            <th scope="col" className="text-center" style={{width: "10%"}}>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="body-table">
-                        <ProdutoCarrinho/>
-                    </tbody>
-                </table>
-                <a href="#" className="text-decoration-none text-dark"><i className="bi bi-trash-fill"></i> Limpar Carrinho</a>
 
-                <div id="frete-section" className="p-4 w-50 mt-5">
-                    <h5>Calcular Frete</h5>
-                    <p>Digite o CEP para calcular o valor do frete o prazo de entrega</p>
-                    <input type="text" disabled value="00000-000" />
-                    <button type="button">Calcular</button>
-                </div>
+                {dataProduto.length > 0 ? 
 
-                <div className="bg-primary-color text-white p-3 mt-5">
-                    <h5>Valor total R$575</h5>
-                </div>
+                    <>
+                    <table className="table table-bordered">
+                        <thead id="head-table">
+                            <tr>
+                                <th scope="col" style={{width: "11%"}}></th>
+                                <th scope="col" className="w-50">Nome do Produto</th>
+                                <th scope="col" className="text-center" style={{width: "10%"}}>Preço unitário</th>
+                                <th scope="col" className="text-center" style={{width: "10%"}}>Qtd.</th>
+                                <th scope="col" className="text-center" style={{width: "10%"}}>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-table">
+                            { dataProduto?.map((produto) => <ProdutoCarrinho produto={produto} key={produto.idCarrinho}/> ) }
+                        </tbody>
+                    </table>
+                    <a href="#" className="text-decoration-none text-dark"><i className="bi bi-trash-fill"></i> Limpar Carrinho</a>
 
-                <div className="mt-5">
-                    <a href="#" className="bg-primary-color text-decoration-none text-white p-3 h5">Finalizar Compra</a>
-                </div>            
+                    <div id="frete-section" className="p-4 w-50 mt-5">
+                        <h5>Calcular Frete</h5>
+                        <p>Digite o CEP para calcular o valor do frete o prazo de entrega</p>
+                        <input type="text" disabled value="00000-000" />
+                        <button type="button">Calcular</button>
+                    </div>
+
+                    <div className="bg-primary-color text-white p-3 mt-5">
+                        <h5>Valor total {modedaBr(totalCompra)}</h5>
+                    </div>
+
+                    <div className="mt-5">
+                        <a href="#" className="bg-primary-color text-decoration-none text-white p-3 h5">Finalizar Compra</a>
+                    </div>
+                    </>
+                    :
+                    <>
+                        <h4>Você não possui produtos no carrinho</h4>
+                        <div className="mt-5">
+                            <Link to="/" className="bg-primary-color text-decoration-none text-white p-3 h5">Voltar</Link>
+                        </div>
+                    </>                    
+                }
+            
             </div>
         </main>
-        <Footer/>
+        { dataProduto.length > 0 ? <Footer/> : ''}
         </>
     );
 };

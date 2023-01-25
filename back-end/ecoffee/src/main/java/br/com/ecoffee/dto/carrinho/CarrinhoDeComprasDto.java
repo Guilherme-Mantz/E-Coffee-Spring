@@ -4,15 +4,15 @@ import br.com.ecoffee.model.carrinho.Carrinho;
 
 public class CarrinhoDeComprasDto {
 
+	private Long idCarrinho;
 	private Long idCliente;
 	private Long idProduto;
-	private Long idCarrinho;
 	private Integer quantidade;
 
 	public CarrinhoDeComprasDto(Carrinho carrinhoDeCompra) {
+		this.idCarrinho = carrinhoDeCompra.getIdCarrinho();
 		this.idCliente = carrinhoDeCompra.getCliente().getIdCliente();
 		this.idProduto = carrinhoDeCompra.getProduto().getIdProduto();
-		this.idCarrinho = carrinhoDeCompra.getIdCarrinho();
 		this.quantidade = carrinhoDeCompra.getQuantidade();
 	}
 

@@ -46,7 +46,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
       <CustomRoute exact path='/produtos/:categoria' component={Produtos} />
       <CustomRoute exact path='/produto/:idProduto' component={DetalhesProduto} />
-      <CustomRoute notLogged exact path='/carrinho' component={Carrinho} />
+      <CustomRoute isPrivate exact path='/carrinho' component={Carrinho} />
     </Switch>
   );
 };

@@ -1,6 +1,6 @@
 INSERT INTO categoria(nome) VALUES ('cafeteira'), ('capsula');
 
-INSERT INTO marca(marca) VALUES ('mondial'), ('baggio');
+INSERT INTO marca(marca) VALUES ('mondial'), ('baggio'), ('starbucks');
 
 INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_categoria, id_marca,descricao_produto, informacoes_tecnicas, peso, preco, custo, titulo_na_pagina, palavras_chave, quantidade_estoque, imagem, miniatura_um, miniatura_dois) VALUES (
 	  'Cafeteira Eletrica Mondial Arome Inox C-34 Ji 15 Xicaras Preta 220v',
@@ -114,5 +114,81 @@ INSERT INTO produtos (nome_produto, sku, codigo_de_barra, status_produto, id_cat
         'imagem-1644592722962-.PNG',
         'miniaturaUm-1644592722964-.PNG',
         'miniaturaDois-1644592722983-.PNG'
+      ),
+      (
+        'STARBUCKS Espresso Colombia',
+        'cfs',
+        '123456789123',
+        'EM_ESTOQUE',
+        2,
+        3,
+        'Beba e saboreie esta origem única da Colômbia, equilibrada, sabor suculento e final característico de nozes. STARBUCKS® Espresso Colômbia criado para as máquinas NESCAFÉ® Dolce Gusto®.',
+        'Características:## Quantidade: 12-Cápsulas## Intensidade: 7## Não contém açúcar e não contém glúten',
+        0.80,
+        26.99,
+        26.99,
+        'STARBUCKS Espresso Colombia',
+        'STARBUCKS Espresso Colombia',
+        50,
+        'imagem-1644597873639-.jpeg',
+        'miniaturaUm-1644597873642-.jpeg',
+        'miniaturaDois-1644597873645-.jpeg'
+      ),
+      (
+        'STARBUCKS Cappuccino',
+        'cfs-01',
+        '123456789123',
+        'EM_ESTOQUE',
+        2,
+        3,
+        'Saboreie o STARBUCKS® Cappucino encorpado e cremoso que combina o espresso com torrefação escura e uma camada cremosa de leite, criado para as máquinas NESCAFÉ® Dolce Gusto®.',
+        'Características:## Quantidade: 12-Cápsulas## Não contém açúcar e não contém glúten',
+        0.80,
+        26.99,
+        26.99,
+        'STARBUCKS Cappuccino',
+        'STARBUCKS Cappuccino',
+        50,
+       	'imagem-1644597940576-.jpeg',
+        'miniaturaUm-1644597940578-.jpeg',
+        'miniaturaDois-1644597940580-.jpeg'
+      ),
+      (
+      	'STARBUCKS Caramel Macchiato',
+        'cfs-02',
+        '123456789123',
+        'EM_ESTOQUE',
+        2,
+        3,
+        'Descubra o famoso e cremoso STARBUCKS® Caramel Mocchiato criado para as máquinas NESCAFÉ® Dolce Gusto®.',
+        'Características:## Quantidade: 12-Cápsulas## Não contém açúcar e não contém glúten',
+        0.80,
+        26.99,
+        26.99,
+        'STARBUCKS Caramel Macchiato',
+        'STARBUCKS Caramel Macchiato',
+        50,
+        'imagem-1644597983367-.jpeg',
+        'miniaturaUm-1644597983370-.jpeg',
+        'miniaturaDois-1644597983374-.jpeg'
+      ),
+      (
+      	'STARBUCKS Americano House Blend',
+        'cfs-03',
+        '123456789123',
+        'EM_ESTOQUE',
+        2,
+        3,
+        'Rico em notas de caramelo, descubra o STARBUCKS® House Blend com seu equilíbrio perfeito de aroma, corpo e sabor, criado para as máquinas NESCAFÉ® Dolce Gusto®.',
+        'Características:## Quantidade: 12-Cápsulas## Intensidade: 8## Não contém açúcar e não contém glúten',
+        0.80,
+        26.99,
+        26.99,
+        'STARBUCKS Americano House Blend',
+        'STARBUCKS Americano House Blend',
+        50,
+        'imagem-1644598000830-.jpeg',
+        'miniaturaUm-1644598000847-.jpeg',
+        'miniaturaDois-1644598000848-.jpeg'
       )
       ;

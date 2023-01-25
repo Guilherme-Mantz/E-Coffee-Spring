@@ -55,7 +55,11 @@ export default function DetalhesProduto () {
 
         await api.post(`/carrinho/inserirproduto/${idProduto}/${dataCliente.idCliente}`, {quantidade: quantidade})
         .then((res) => { 
-            console.log(res)
+            if(res.status === 201){
+                
+                history.push("/carrinho");
+                window.location.reload();
+            };
         })
         .catch((error) => {
             console.log(error)
@@ -68,7 +72,7 @@ export default function DetalhesProduto () {
             <div className="container">
                 <div className="row mt-5">
                     <div className="images-produto col-4">
-                        <img src={require('../../../../../images/uploads/'+dataProduto.imagem)} alt={dataProduto.tituloPagina} width="380px" height="380px" className="float-start" />
+                        <img src={require('../../../../../images/uploads/'+dataProduto.imagem)} alt={dataProduto.tituloPagina} width="380px" height="380px" className="float-start rounded" />
                     </div>
                     
                     <div className="comprar-produto col pt-5">

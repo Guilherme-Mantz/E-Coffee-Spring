@@ -48,7 +48,7 @@ export default function Header () {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/"><i className="bi bi-cart2" id="cart-icon"></i></Link>
+                                <Link className="nav-link text-white" to="/carrinho"><i className="bi bi-cart2" id="cart-icon"></i></Link>
                             </li>
                             </>
                             :

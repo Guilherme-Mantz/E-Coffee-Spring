@@ -1,0 +1,5 @@
+package br.com.ecoffee.factory.carrinho;
+
+public class CarrinhoDeCompraFactory {
+
+}

@@ -18,7 +18,7 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 
 	public List<ProdutoDto> listarProdutosEmDestaque() {
-		List<Produto> produtos = produtoRepository.findAll(); //Limitar para buscar 3 produtos de cada tipo
+		List<Produto> produtos = produtoRepository.findProdutos(); //Limitar para buscar 3 produtos de cada tipo
 		List<ProdutoDto> emDestaque = produtos.stream().map(ProdutoDto::new).collect(Collectors.toList());
 		
 		return emDestaque;
