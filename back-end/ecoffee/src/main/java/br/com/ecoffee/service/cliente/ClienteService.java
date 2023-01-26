@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.dto.cliente.AtualizarClienteForm;
 import br.com.ecoffee.dto.cliente.ClienteDto;
+import br.com.ecoffee.dto.cliente.ClienteDtoMapper;
 import br.com.ecoffee.dto.cliente.ClienteForm;
 import br.com.ecoffee.exception.UniqueException;
 import br.com.ecoffee.model.cliente.Cliente;
@@ -27,13 +28,13 @@ public class ClienteService {
 	
 	public ClienteDto detalhesDeLoginCliente(String token) {
 	    Long idCliente = jwtService.getIdUsuario(token);
-	    Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+	    Cliente cliente = clienteRepository.findById(idCliente).get();
 	    
-	    return new ClienteDto(cliente.get());
+	    return ClienteDtoMapper.INSTANCE.toClienteDto(cliente);
 	}
 
 	@Transactional
-	public Cliente cadastrarCliente(ClienteForm clienteForm) {
+	public ClienteDto cadastrarCliente(ClienteForm clienteForm) {
 		Cliente cliente = clienteForm.toCliente();
 		
 		if(buscarClientePeloEmail(cliente.getEmail()).isPresent()) {
@@ -45,7 +46,7 @@ public class ClienteService {
 		
 		Cliente novoCliente = clienteRepository.save(cliente);
 		
-		return novoCliente;
+		return ClienteDtoMapper.INSTANCE.toClienteDto(novoCliente);
 	}
 
 	private Optional<Cliente> buscarClientePeloCpf(String cpf) {
@@ -61,9 +62,9 @@ public class ClienteService {
 	}
 
 	@Transactional
-	public Cliente atualizarCliente(Cliente cliente, AtualizarClienteForm clienteForm) {
+	public ClienteDto atualizarCliente(Cliente cliente, AtualizarClienteForm clienteForm) {
 		Cliente clienteAtualizado = clienteForm.atualizar(cliente);
-		return clienteAtualizado;
+		return ClienteDtoMapper.INSTANCE.toClienteDto(clienteAtualizado);
 	}
 
 }

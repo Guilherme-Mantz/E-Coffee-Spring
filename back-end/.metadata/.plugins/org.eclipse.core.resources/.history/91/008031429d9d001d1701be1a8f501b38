@@ -1,0 +1,21 @@
+package br.com.ecoffee.dto.carrinho;
+
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import br.com.ecoffee.model.carrinho.Carrinho;
+
+@Service
+public class CarrinhoDeComprasDtoMapper implements Function<Carrinho, CarrinhoDeComprasDto> {
+
+	@Override
+	public CarrinhoDeComprasDto apply(Carrinho carrinhoDeCompra) {
+		return new CarrinhoDeComprasDto(
+				carrinhoDeCompra.getIdCarrinho(), 
+				carrinhoDeCompra.getCliente().getIdCliente(),
+				carrinhoDeCompra.getProduto().getIdProduto(), 
+				carrinhoDeCompra.getQuantidade());
+	}
+
+}

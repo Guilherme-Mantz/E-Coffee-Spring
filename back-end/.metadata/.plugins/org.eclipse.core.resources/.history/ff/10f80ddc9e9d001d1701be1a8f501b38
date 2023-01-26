@@ -1,0 +1,10 @@
+package br.com.ecoffee.dto.carrinho;
+
+import org.mapstruct.Mapper;
+
+import br.com.ecoffee.model.carrinho.Carrinho;
+
+@Mapper
+public interface CarrinhoDeComprasDtoMapper {
+	CarrinhoDeComprasDto toCarrinhoDeCompraDto(Carrinho carrinho);
+}

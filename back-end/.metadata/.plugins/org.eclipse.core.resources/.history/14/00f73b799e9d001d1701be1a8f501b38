@@ -1,0 +1,56 @@
+package br.com.ecoffee.service.carrinho;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Service;
+
+import br.com.ecoffee.dto.carrinho.CarrinhoDeComprasDto;
+import br.com.ecoffee.dto.carrinho.CarrinhoDeComprasDtoMapper;
+import br.com.ecoffee.dto.carrinho.ProdutosCarrinhoDto;
+import br.com.ecoffee.factory.carrinho.CarrinhoDeCompraFactory;
+import br.com.ecoffee.model.carrinho.Carrinho;
+import br.com.ecoffee.repository.carrinho.CarrinhoRepository;
+
+@Service
+public class CarrinhoDeCompraService {
+
+	private final CarrinhoRepository carrinhoRepository;
+	private final CarrinhoDeCompraFactory carrinhoFactory;
+	private final CarrinhoDeComprasDtoMapper carrinhoMapper = Mappers.getMapper(CarrinhoDeComprasDtoMapper.class);
+
+	public CarrinhoDeCompraService(CarrinhoRepository carrinhoRepository, CarrinhoDeCompraFactory carrinhoFactory) {
+		this.carrinhoRepository = carrinhoRepository;
+		this.carrinhoFactory = carrinhoFactory;
+	}
+
+	@Transactional
+	public CarrinhoDeComprasDto inserirProduto(Long idProduto, Long idCliente, Integer quantidade) {
+
+		Carrinho novoCarrinhoDeCompras = carrinhoRepository
+				.save(carrinhoFactory.criarCarrinhoDeCompra(idProduto, idCliente, quantidade));
+
+		CarrinhoDeComprasDto carrinho = carrinhoMapper.toCarrinhoDeCompraDto(novoCarrinhoDeCompras);
+
+		return carrinho;
+	}
+
+	@Transactional
+	public void deletarCarrinho(Long idCarrinho) {
+		carrinhoRepository.deleteById(idCarrinho);
+	}
+
+	public List<ProdutosCarrinhoDto> buscarProdutosNoCarrinho(Long idCliente) {
+
+		List<ProdutosCarrinhoDto> produtos = carrinhoRepository.findProdutosByIdCliente(idCliente);
+		return produtos;
+	}
+
+	public Optional<Carrinho> buscarCarrinhoPeloId(Long idCarrinho) {
+		return carrinhoRepository.findById(idCarrinho);
+	}
+
+}

@@ -40,10 +40,10 @@ public class CarrinhoDeCompraController {
 	public ResponseEntity<CarrinhoDeComprasDto> inserirProdutoNoCarrinho(@PathVariable Long idProduto, @PathVariable Long idCliente,
 			@RequestBody QuantidadeDto quantidade, UriComponentsBuilder uriBuilder) {
 
-		Carrinho carrinhoDeCompra = carrinhoService.inserirProduto(idProduto, idCliente, quantidade.getQuantidade());
+		CarrinhoDeComprasDto carrinhoDeCompra = carrinhoService.inserirProduto(idProduto, idCliente, quantidade.getQuantidade());
 		
-		URI uri = uriBuilder.path("/cliente/{idCliente}").buildAndExpand(carrinhoDeCompra.getIdCarrinho()).toUri();
-		return ResponseEntity.created(uri).body(new CarrinhoDeComprasDto(carrinhoDeCompra));
+		URI uri = uriBuilder.path("/carrinho/inserirproduto/{idCarrinho}").buildAndExpand(carrinhoDeCompra.getIdCarrinho()).toUri();
+		return ResponseEntity.created(uri).body(carrinhoDeCompra);
 	}
 	
 	@DeleteMapping("removerproduto/{idCarrinho}")

@@ -1,0 +1,17 @@
+package br.com.ecoffee.dto.carrinho;
+
+public class CarrinhoDeComprasDto {
+
+	private Long idCarrinho;
+	private Long idCliente;
+	private Long idProduto;
+	private Integer quantidade;
+	
+	public Long getIdCarrinho() {
+		return idCarrinho;
+	}
+
+	public void setIdCarrinho(Long idCarrinho) {
+		this.idCarrinho = idCarrinho;
+	}
+}

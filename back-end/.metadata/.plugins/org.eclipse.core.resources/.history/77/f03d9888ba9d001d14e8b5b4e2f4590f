@@ -1,0 +1,12 @@
+package br.com.ecoffee.dto.endereco;
+
+import org.mapstruct.factory.Mappers;
+
+import br.com.ecoffee.model.endereco.Endereco;
+
+public interface EnderecoDtoMapper {
+
+	EnderecoDtoMapper INSTANCE = Mappers.getMapper(EnderecoDtoMapper.class);
+	
+	EnderecoDto toEnderecoDto(Endereco endereco);
+}

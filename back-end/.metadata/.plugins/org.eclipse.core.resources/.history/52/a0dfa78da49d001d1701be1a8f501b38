@@ -1,0 +1,14 @@
+package br.com.ecoffee.dto.carrinho;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import br.com.ecoffee.model.carrinho.Carrinho;
+
+@Mapper
+public interface CarrinhoDeComprasDtoMapper {
+	
+	CarrinhoDeComprasDtoMapper INSTANCE = Mappers.getMapper( CarrinhoDeComprasDtoMapper.class );
+
+	CarrinhoDeComprasDto toCarrinhoDeCompraDto(Carrinho carrinho);
+}

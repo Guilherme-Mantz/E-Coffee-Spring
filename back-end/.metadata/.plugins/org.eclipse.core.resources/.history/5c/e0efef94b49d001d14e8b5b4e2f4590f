@@ -1,0 +1,5 @@
+package br.com.ecoffee.dto.produto;
+
+public interface ProdutoDtoMapper {
+
+}

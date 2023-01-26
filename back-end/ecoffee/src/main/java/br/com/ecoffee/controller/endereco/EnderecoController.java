@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +27,13 @@ import br.com.ecoffee.service.endereco.EnderecoService;
 @RequestMapping("endereco")
 public class EnderecoController {
 	
-	@Autowired
 	private EnderecoService enderecoService;
+	private EnderecoDto enderecoDto;
+	
+	public EnderecoController(EnderecoService enderecoService, EnderecoDto enderecoDto) {
+		this.enderecoService = enderecoService;
+		this.enderecoDto = enderecoDto;
+	}
 
 	@GetMapping("listar/{idCliente}")
 	public List<EnderecoDto> listarEnderecosPeloIdCliente(@PathVariable Long idCliente) {
@@ -42,7 +46,7 @@ public class EnderecoController {
 	public EnderecoDto buscarEnderecoPeloIdClienteAndIdEndereco(@PathVariable Long idCliente, @PathVariable Long idEndereco) {
 		
 		Endereco enderecoEncontrado = enderecoService.buscarEnderecoPeloIdClienteAndIdEndereco(idCliente, idEndereco).get();
-		EnderecoDto endereco = new EnderecoDto(enderecoEncontrado);
+		EnderecoDto endereco = enderecoDto.toEnderecoDto(enderecoEncontrado);
 		
 		return endereco;
 	}
@@ -52,14 +56,14 @@ public class EnderecoController {
 		Endereco endereco = enderecoService.cadastrarEndereco(idCliente, enderecoForm);
 		
 		URI uri = uriBuilder.path("/endereco/cadastrar/{idEndereco}").buildAndExpand(endereco.getIdEndereco()).toUri();
-		return ResponseEntity.created(uri).body(new EnderecoDto(endereco));
+		return ResponseEntity.created(uri).body(enderecoDto.toEnderecoDto(endereco));
 	}
 	
 	@PutMapping("atualizar/{idEndereco}")
 	public ResponseEntity<EnderecoDto> atualizarEnderecoPeloId(@PathVariable Long idEndereco, @RequestBody AtualizarEnderecoForm atualizarForm){
 		
 		Endereco enderecoAtualizado = enderecoService.atualizarEndereco(idEndereco, atualizarForm);
-		return ResponseEntity.ok(new EnderecoDto(enderecoAtualizado));
+		return ResponseEntity.ok(enderecoDto.toEnderecoDto(enderecoAtualizado));
 		
 	}
 	

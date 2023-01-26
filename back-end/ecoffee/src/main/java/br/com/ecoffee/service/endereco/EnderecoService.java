@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.dto.endereco.AtualizarEnderecoForm;
 import br.com.ecoffee.dto.endereco.EnderecoDto;
+import br.com.ecoffee.dto.endereco.EnderecoDtoMapper;
 import br.com.ecoffee.dto.endereco.EnderecoForm;
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.model.endereco.Endereco;
@@ -29,7 +30,10 @@ public class EnderecoService {
 
 	public List<EnderecoDto> listarEnderecosPeloCliente(Long idCliente) {
 		List<Endereco> enderecos = enderecoRepository.findByIdCliente(idCliente);
-		List<EnderecoDto> dtos = enderecos.stream().map(EnderecoDto::new).collect(Collectors.toList());
+		
+		List<EnderecoDto> dtos = enderecos.stream()
+				.map(EnderecoDtoMapper.INSTANCE::toEnderecoDto)
+				.collect(Collectors.toList());
 		
 		return dtos;
 	}

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,15 +26,18 @@ import br.com.ecoffee.service.cliente.ClienteService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-	@Autowired
 	private ClienteService clienteService;
+	
+	public ClienteController(ClienteService clienteService) {
+		this.clienteService = clienteService;
+	}
 
 	@PostMapping("cadastrar")
 	public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder) {
-		Cliente cliente = clienteService.cadastrarCliente(clienteForm);
+		ClienteDto cliente = clienteService.cadastrarCliente(clienteForm);
 		
 		URI uri = uriBuilder.path("/cliente/{idCliente}").buildAndExpand(cliente.getIdCliente()).toUri();
-		return ResponseEntity.created(uri).body(new ClienteDto(cliente));
+		return ResponseEntity.created(uri).body(cliente);
 	}
 	
 	@PutMapping("atualizar/{id}")
@@ -43,8 +45,8 @@ public class ClienteController {
 		Optional<Cliente> cliente = clienteService.buscarClientePeloId(id);
 		if(cliente.isPresent()) {
 			
-			Cliente clienteAtualizado = clienteService.atualizarCliente(cliente.get(), clienteForm);
-			return ResponseEntity.ok(new ClienteDto(clienteAtualizado));
+			ClienteDto clienteAtualizado = clienteService.atualizarCliente(cliente.get(), clienteForm);
+			return ResponseEntity.ok(clienteAtualizado);
 		}
 		
 		return ResponseEntity.notFound().build();

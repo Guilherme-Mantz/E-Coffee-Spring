@@ -1,7 +1,6 @@
 package br.com.ecoffee.controller.produto;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ecoffee.dto.produto.DetalhesProdutoDto;
 import br.com.ecoffee.dto.produto.ProdutoDto;
-import br.com.ecoffee.model.produto.Produto;
 import br.com.ecoffee.service.produto.ProdutoService;
 
 @RestController
@@ -43,11 +41,11 @@ public class ProdutoController {
 	@Cacheable("detalhes")
 	@GetMapping("/{idProduto}")
 	public ResponseEntity<DetalhesProdutoDto> listarInformacoesDoProduto (@PathVariable Long idProduto){
+	
+		DetalhesProdutoDto produtoDetalhado = produtoService.detalhesProduto(idProduto);
 		
-		Optional<Produto> produto = produtoService.buscarProdutoPeloId(idProduto);
-		
-		if(produto.isPresent()) {
-			return ResponseEntity.ok(new DetalhesProdutoDto(produto.get()));
+		if(produtoDetalhado != null) {
+			return ResponseEntity.ok(produtoDetalhado);
 		}
 		
 		return ResponseEntity.notFound().build();
