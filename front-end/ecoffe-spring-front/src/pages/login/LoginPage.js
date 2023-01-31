@@ -1,5 +1,5 @@
-import FormLogin from "../../components/FormLogin/FormLogin";
-import FormRegistro from "../../components/FormRegistro/FormRegistro";
+import FormLogin from "../../components/Forms/FormLogin/FormLogin";
+import FormRegistro from "../../components/Forms/FormRegistro/FormRegistro";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 

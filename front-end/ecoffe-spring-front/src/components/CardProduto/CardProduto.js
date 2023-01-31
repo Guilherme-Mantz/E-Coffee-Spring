@@ -18,7 +18,7 @@ export default function CardProduto (props) {
                 </div>
             </Link>
 
-            <Link to="#" className='text-decoration-none text-white p-1' id='comprar-produto'>Comprar <i class="bi bi-cart2"></i></Link>
+            <Link to="#" className='text-decoration-none text-white p-1' id='comprar-produto'>Comprar <i className="bi bi-cart2"></i></Link>
         </div>
     );
 };

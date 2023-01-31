@@ -58,4 +58,12 @@ public class CarrinhoDeCompraController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	@DeleteMapping("deletarcarrinho/{idCliente}")
+	public ResponseEntity<?> deletarCarrinhosDoCliente(@PathVariable Long idCliente){
+			
+			carrinhoService.deletarCarrinhosDoCliente(idCliente);
+			return ResponseEntity.noContent().build();
+
+	}
 }

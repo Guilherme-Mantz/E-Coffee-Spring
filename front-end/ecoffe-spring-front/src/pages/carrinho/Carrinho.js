@@ -43,7 +43,20 @@ export default function Carrinho () {
         return <h2>Carregando produtos...</h2>
     }
 
-    let totalCompra = dataProduto.reduce((total, valor) => total + valor.preco * valor.quantidade, 0)
+    let totalCompra = dataProduto.reduce((total, valor) => total + valor.preco * valor.quantidade, 0);
+
+    async function handleCleanCart () {
+        await api.delete(`/carrinho/deletarcarrinho/${dataCliente.idCliente}`)
+        .then((res) => {
+            if(res.status === 204){
+                history.replace('/');
+                window.location.reload();
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
         <>
@@ -69,7 +82,7 @@ export default function Carrinho () {
                             { dataProduto?.map((produto) => <ProdutoCarrinho produto={produto} key={produto.idCarrinho}/> ) }
                         </tbody>
                     </table>
-                    <a href="#" className="text-decoration-none text-dark"><i className="bi bi-trash-fill"></i> Limpar Carrinho</a>
+                    <Link to="#" onClick={() => { handleCleanCart() }} className="text-decoration-none text-dark"><i className="bi bi-trash-fill"></i> Limpar Carrinho</Link>
 
                     <div id="frete-section" className="p-4 w-50 mt-5">
                         <h5>Calcular Frete</h5>
@@ -83,7 +96,7 @@ export default function Carrinho () {
                     </div>
 
                     <div className="mt-5">
-                        <a href="#" className="bg-primary-color text-decoration-none text-white p-3 h5">Finalizar Compra</a>
+                        <Link to="finalizarcompra" className="bg-primary-color text-decoration-none text-white p-3 h5">Finalizar Compra</Link>
                     </div>
                     </>
                     :

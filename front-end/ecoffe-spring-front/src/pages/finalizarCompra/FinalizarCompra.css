@@ -1,0 +1,41 @@
+#checkout-produtos{
+	border-top: 1px solid #CEC9C9 !important;
+	border-bottom: 1px solid #CEC9C9 !important;
+	height: fit-content;
+	list-style: none;
+	width: 60%;
+}
+
+#checkout-produtos .checkout-preco{
+	margin-left: 15%;
+}
+
+#checkout-endereco {
+	background-color: #FFF8F0;
+	border: 1px solid #CEC9C9 !important;
+	border-radius: 5px;
+}
+
+#checkout-endereco #select-endereco {
+	background-color: #FFF1E0;
+}
+
+#checkout-pagamento {
+	background-color: #FFF8F0;
+	border: 1px solid #CEC9C9 !important;
+	border-radius: 5px;
+}
+
+@media (min-width: 900px) and (max-width: 1200px) { 
+	#checkout-produtos{
+		margin-top: 50px;
+		width: 100%;
+	}
+}
+
+@media (max-width: 599px) { 
+	#checkout-produtos{
+		margin-top: 50px;
+		width: 180%;
+	}
+}

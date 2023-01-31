@@ -1,6 +1,0 @@
-package br.com.ecoffee.controller.carrinho;
-
-@Res
-public class CarrinhoController {
-
-}

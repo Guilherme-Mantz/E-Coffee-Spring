@@ -1,5 +1,0 @@
-package br.com.ecoffee.repository.carrinho;
-
-public interface CarrinhoRepository {
-
-}
