@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,13 @@ public class ProdutoService {
 		Produto produto = buscarProdutoPeloId(idProduto).get();
 		
 		return ProdutoDtoMapper.INSTANCE.toDetalhesProdutoDto(produto);
+	}
+
+	@Transactional
+	public void subtrairQuantidadeDoEstoque(Produto produto, Integer quantidade) {
+		
+		produto.subtrairEstoque(quantidade);
+		produtoRepository.save(produto);
 	}
 
 }

@@ -5,7 +5,7 @@ export default function CheckoutEndereco (props) {
     return (
         <>
             <div className="d-flex mt-3 p-3" id="select-endereco">
-                <input type="radio" id="selectEndereco" name="selectEndereco" value={idEndereco} defaultChecked={props.index === 0} />
+                <input type="radio" id="selectEndereco" name="selectEndereco" value={idEndereco} defaultChecked={props.index === 0} onChange={(e) => props.func(e)} />
                 <ul className="w-100 mb-0">
                     <li><h6>{nomeEndereco}</h6></li>
                     <li>{logradouro}, N° {numeroResidencia}</li>

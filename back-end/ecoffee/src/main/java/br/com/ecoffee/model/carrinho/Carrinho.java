@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.model.produto.Produto;
@@ -15,7 +16,8 @@ import br.com.ecoffee.model.produto.Produto;
 public class Carrinho {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CART_SEQ")
+    @SequenceGenerator(name="CART_SEQ", sequenceName="CART_SEQ", allocationSize=100)
 	@Column(columnDefinition = "serial")
 	private Long idCarrinho;
 

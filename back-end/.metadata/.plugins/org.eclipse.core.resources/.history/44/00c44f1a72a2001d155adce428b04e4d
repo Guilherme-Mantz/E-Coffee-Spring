@@ -1,0 +1,47 @@
+package br.com.ecoffee.service.pedido;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.ecoffee.model.carrinho.Carrinho;
+import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.endereco.Endereco;
+import br.com.ecoffee.model.pedido.Pedido;
+import br.com.ecoffee.model.produto.Produto;
+import br.com.ecoffee.service.carrinho.CarrinhoDeCompraService;
+import br.com.ecoffee.service.cliente.ClienteService;
+import br.com.ecoffee.service.endereco.EnderecoService;
+
+@Service
+public class PedidoService {
+	
+	private CarrinhoDeCompraService carrinhoService;
+	private ClienteService clienteService;
+	private EnderecoService enderecoService;
+	
+	@Transactional
+	public void finalizarCompra(Long idCliente, Long IdEndereco) {
+		
+		List<Carrinho> carts = carrinhoService.buscarCarrinhoPeloIdCliente(idCliente);
+		
+		Cliente cliente = clienteService.buscarClientePeloId(idCliente).get();
+		Endereco endereco = enderecoService.buscarEnderecoPeloIdClienteAndIdEndereco(idCliente, IdEndereco).get();
+		
+		
+		for(Carrinho car : carts) {
+			
+			Produto produto = car.getProduto();
+			
+			Double valorTotal = car.getQuantidade() * produto.getPreco().doubleValue();
+			
+			new Pedido(car.getQuantidade(), LocalDate.now(), valorTotal, cliente, endereco, produto);
+			
+		}
+		
+	}
+
+}

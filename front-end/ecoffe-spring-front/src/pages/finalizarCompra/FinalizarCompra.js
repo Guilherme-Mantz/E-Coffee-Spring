@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 
 import { Context } from '../../context/AuthContext';
 
@@ -23,6 +23,8 @@ export default function FinalizarCompra () {
     const [ dataProduto, setDataProduto ] = useState([]);
     const [ enderecos, setEnderecos ] = useState([]);
     const [ loading, setLoading ] = useState(true);
+
+    const [ idendereco, setIdendereco ] = useState(null);
 
     useEffect(() => {
         if(dataCliente !== null){
@@ -51,10 +53,39 @@ export default function FinalizarCompra () {
 
     }, [dataCliente])
 
+    useEffect(() => {
+        setTimeout(() => {
+            const elements = document.querySelectorAll('#selectEndereco');
+    
+            elements.forEach((e) => {
+                if(e.checked && idendereco === null){
+                    setIdendereco(e.value)
+                }
+            });
+    
+        }, 300)
+
+    },[idendereco]);
+
+    function handleChange(e){
+        setIdendereco(valorAntigo => valorAntigo = e.target.value);
+    };
+
     if(loading){
         return <h2>Carregando produtos...</h2>
-    }
+    };
 
+    async function handleSubmit(){
+        api.post("pedido/finalizarcompra", {idCliente: dataCliente.idCliente, idEndereco: idendereco})
+        .then((res) => {
+            if(res.status === 201){
+                /*Pagina de pedidos pendente*/
+                history.replace("/user/home");
+                window.location.reload();
+            }
+        })
+    };
+    
     return (
         <>
         <Header/>
@@ -84,7 +115,7 @@ export default function FinalizarCompra () {
                                 : 
                                 <>
                                     <span>Seus Endereços: </span>
-                                    {enderecos.map((endereco, i) => <CheckoutEndereco endereco={endereco} key={endereco.idEndereco} index={i}/> )}
+                                    {enderecos.map((endereco, i) => <CheckoutEndereco endereco={endereco} key={endereco.idEndereco} index={i} func={handleChange}/> )}
                                 </>
                             }
 
@@ -128,7 +159,7 @@ export default function FinalizarCompra () {
                     
                 </div>
 
-                <a href="#" className="text-white text-decoration-none btn bg-secondary-color fw-bold mt-4">Finalizar Compra</a>
+                <a href="#" onClick={() => handleSubmit()} className="text-white text-decoration-none btn bg-secondary-color fw-bold mt-4">Finalizar Compra</a>
             </div>
         </main>
 

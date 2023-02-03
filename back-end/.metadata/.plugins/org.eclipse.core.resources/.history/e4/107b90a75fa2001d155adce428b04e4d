@@ -1,0 +1,16 @@
+package br.com.ecoffee.service.pedido;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PedidoService {
+
+	@Transactional
+	public void finalizarCompra() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.com.ecoffee.exception.BusinessException;
 import br.com.ecoffee.model.categoria.Categoria;
 import br.com.ecoffee.model.marca.Marca;
 
@@ -22,7 +24,8 @@ import br.com.ecoffee.model.marca.Marca;
 public class Produto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PROD_SEQ")
+    @SequenceGenerator(name="PROD_SEQ", sequenceName="PROD_SEQ", allocationSize=100)
 	@Column(columnDefinition = "serial")
 	private Long idProduto;
 
@@ -150,6 +153,16 @@ public class Produto {
 
 	public Marca getMarca() {
 		return marca;
+	}
+	
+	public void subtrairEstoque(Integer quantidade) {
+		
+		if(quantidade <= 0 && quantidade > this.quantidadeEstoque) {
+			throw new BusinessException("Quantidade não pode ser menor ou igual a 0");
+		}
+		
+		this.quantidadeEstoque -= quantidade;
+		
 	}
 
 }

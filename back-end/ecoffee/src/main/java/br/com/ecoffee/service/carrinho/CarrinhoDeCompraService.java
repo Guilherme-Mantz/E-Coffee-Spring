@@ -57,6 +57,11 @@ public class CarrinhoDeCompraService {
 
 		return produtos;
 	}
+	
+	public List<Carrinho> buscarCarrinhoPeloIdCliente(Long idCliente){
+		List<Carrinho> carrinhosDeCompra = carrinhoRepository.findByIdCliente(idCliente);
+		return carrinhosDeCompra;
+	}
 
 	public Optional<Carrinho> buscarCarrinhoPeloId(Long idCarrinho) {
 		return carrinhoRepository.findById(idCarrinho);

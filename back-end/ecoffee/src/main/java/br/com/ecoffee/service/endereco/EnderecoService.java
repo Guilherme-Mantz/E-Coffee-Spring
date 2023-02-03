@@ -68,4 +68,8 @@ public class EnderecoService {
 		return enderecoAtualizado;
 	}
 
+	public Optional<Endereco> buscarEnderecoPeloId(Long idEndereco) {
+		return enderecoRepository.findById(idEndereco);
+	}
+
 }

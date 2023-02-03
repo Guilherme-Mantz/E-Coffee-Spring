@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.ecoffee.model.cliente.Cliente;
@@ -16,7 +17,9 @@ import br.com.ecoffee.model.cliente.Cliente;
 public class Endereco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ADRES_SEQ")
+    @SequenceGenerator(name="ADRES_SEQ", sequenceName="ADRES_SEQ", allocationSize=100)
+	@Column(columnDefinition = "serial")
 	private Long idEndereco;
 
 	@Column(name = "nome_do_endereco", nullable = false, length = 45)

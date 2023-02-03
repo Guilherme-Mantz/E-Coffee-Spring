@@ -1,0 +1,24 @@
+package br.com.ecoffee.dto.pedido;
+
+public class FormPedido {
+
+	private Long idCliente;
+	private Long idEndreco;
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public Long getIdEndreco() {
+		return idEndreco;
+	}
+
+	public void setIdEndreco(Long idEndreco) {
+		this.idEndreco = idEndreco;
+	}
+
+}

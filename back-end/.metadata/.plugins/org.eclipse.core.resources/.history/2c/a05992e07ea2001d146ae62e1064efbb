@@ -1,0 +1,15 @@
+package br.com.ecoffee.dto.pedido;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import br.com.ecoffee.model.pedido.Pedido;
+
+@Mapper(componentModel = "spring")
+public interface PedidoDtoMapper {
+
+	PedidoDtoMapper INSTANCE = Mappers.getMapper(PedidoDtoMapper.class);
+
+	PedidoDto toPedidoDto(Pedido pedido);
+
+}

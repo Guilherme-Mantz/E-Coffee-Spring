@@ -1,5 +1,0 @@
-package br.com.ecoffee.exception;
-
-public class BusinessException {
-
-}
