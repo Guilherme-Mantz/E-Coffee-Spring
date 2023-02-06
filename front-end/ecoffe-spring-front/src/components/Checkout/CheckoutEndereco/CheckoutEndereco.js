@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function CheckoutEndereco (props) {
 
     const { idEndereco, nomeEndereco, logradouro, numeroResidencia, bairro, cep, cidade, uf, complemento} = props.endereco;
@@ -13,8 +15,8 @@ export default function CheckoutEndereco (props) {
                     <li>{bairro} - {cidade} - {uf}</li>
                     {complemento ? <li>{complemento}</li> : ''}
                     <div className="d-flex justify-content-between">
-                        <a className="text-decoration-none title-primary-color" href="#">Editar</a>
-                        <a className="text-decoration-none title-primary-color" href="#">Adicionar Endereço</a>
+                        <Link className="text-decoration-none title-primary-color" to={`/user/enderecos/alterar/${idEndereco}`}>Editar</Link>
+                        <Link className="text-decoration-none title-primary-color" to="/user/enderecos">Adicionar Endereço</Link>
                     </div>
                 </ul>
             </div>

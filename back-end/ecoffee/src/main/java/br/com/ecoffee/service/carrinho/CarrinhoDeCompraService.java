@@ -28,6 +28,17 @@ public class CarrinhoDeCompraService {
 
 	@Transactional
 	public CarrinhoDeComprasDto inserirProduto(Long idProduto, Long idCliente, Integer quantidade) {
+		
+		Optional<Carrinho> validacao = this.buscarCarrinhoPeloIdProdutoAndIdCliente(idProduto, idCliente);
+		if(validacao.isPresent()) {
+			
+			validacao.get().adicionarQuantidade(quantidade);
+			
+			Carrinho quantidadeAtualizada = carrinhoRepository.save(validacao.get());
+			CarrinhoDeComprasDto carrinho = CarrinhoDtoMapper.INSTANCE.toCarrinhoDeCompraDto(quantidadeAtualizada);
+			
+			return carrinho;
+		}
 
 		Carrinho novoCarrinhoDeCompras = carrinhoRepository
 				.save(carrinhoFactory.criarCarrinhoDeCompra(idProduto, idCliente, quantidade));
@@ -65,6 +76,10 @@ public class CarrinhoDeCompraService {
 
 	public Optional<Carrinho> buscarCarrinhoPeloId(Long idCarrinho) {
 		return carrinhoRepository.findById(idCarrinho);
+	}
+	
+	public Optional<Carrinho> buscarCarrinhoPeloIdProdutoAndIdCliente (Long idProduto, Long idCliente){
+		return carrinhoRepository.findByIdProdutoAndIdCliente(idCliente, idProduto);
 	}
 
 }

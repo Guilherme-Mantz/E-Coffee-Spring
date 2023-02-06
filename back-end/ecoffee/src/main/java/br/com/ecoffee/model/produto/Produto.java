@@ -158,7 +158,7 @@ public class Produto {
 	public void subtrairEstoque(Integer quantidade) {
 		
 		if(quantidade <= 0 && quantidade > this.quantidadeEstoque) {
-			throw new BusinessException("Quantidade não pode ser menor ou igual a 0");
+			throw new BusinessException("Quantidade não pode ser menor ou igual a 0 e maior que a quantidade disponivel no estoque");
 		}
 		
 		this.quantidadeEstoque -= quantidade;

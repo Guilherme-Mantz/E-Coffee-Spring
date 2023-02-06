@@ -1,9 +1,7 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
 
 import { Context } from '../../context/AuthContext';
-
-import { modedaBr } from '../../utils/formatCoinUtil';
 
 import history from '../../history';
 
@@ -159,7 +157,7 @@ export default function FinalizarCompra () {
                     
                 </div>
 
-                <a href="#" onClick={() => handleSubmit()} className="text-white text-decoration-none btn bg-secondary-color fw-bold mt-4">Finalizar Compra</a>
+                { enderecos.length > 0 && <Link to="#" onClick={() => handleSubmit()} className="text-white text-decoration-none btn bg-secondary-color fw-bold mt-4">Finalizar Compra</Link> }
             </div>
         </main>
 

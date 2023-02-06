@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import br.com.ecoffee.exception.BusinessException;
 import br.com.ecoffee.model.cliente.Cliente;
 import br.com.ecoffee.model.produto.Produto;
 
@@ -16,8 +17,8 @@ import br.com.ecoffee.model.produto.Produto;
 public class Carrinho {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CART_SEQ")
-    @SequenceGenerator(name="CART_SEQ", sequenceName="CART_SEQ", allocationSize=100)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_SEQ")
+	@SequenceGenerator(name = "CART_SEQ", sequenceName = "CART_SEQ", allocationSize = 100)
 	@Column(columnDefinition = "serial")
 	private Long idCarrinho;
 
@@ -31,8 +32,9 @@ public class Carrinho {
 
 	@Column(nullable = false)
 	private Integer quantidade;
-	
-	public Carrinho() {}
+
+	public Carrinho() {
+	}
 
 	public Carrinho(Cliente cliente, Produto produto, Integer quantidade) {
 		this.cliente = cliente;
@@ -54,6 +56,15 @@ public class Carrinho {
 
 	public Integer getQuantidade() {
 		return quantidade;
+	}
+
+	public void adicionarQuantidade(Integer quantidade) {
+		
+		if(quantidade <= 0) {
+			throw new BusinessException("Quantidade não pode ser menor ou igual a 0");
+		}
+		
+		this.quantidade += quantidade;
 	}
 
 }
