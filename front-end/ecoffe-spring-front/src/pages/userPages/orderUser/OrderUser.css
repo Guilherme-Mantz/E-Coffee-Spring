@@ -1,0 +1,10 @@
+#card-pedido-header {
+    background-color: #FFE1BD;
+    border: 1px solid #CE5F20;
+    border-bottom: 0;
+}
+
+#card-pedido-body {
+    background-color: #FFF1E0;
+    border: 1px solid #CE5F20;
+}

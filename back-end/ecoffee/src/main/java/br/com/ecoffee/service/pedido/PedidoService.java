@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.ecoffee.dto.pedido.PedidoDetalhadoDto;
 import br.com.ecoffee.dto.pedido.PedidoDto;
 import br.com.ecoffee.dto.pedido.PedidoDtoMapper;
 import br.com.ecoffee.factory.pedido.PedidoFactory;
@@ -38,13 +39,18 @@ public class PedidoService {
 
 		List<Pedido> novosPedidos = pedidoRepository.saveAll(pedidos);
 
-		// subtrair quantidade;
 		novosPedidos.forEach(p -> produtoService.subtrairQuantidadeDoEstoque(p.getProduto(), p.getQuantidade()));
 
-		// Limpar carrinho;
 		carrinhoService.deletarCarrinhosDoCliente(idCliente);
 
 		return novosPedidos.stream().map(PedidoDtoMapper.INSTANCE::toPedidoDto).collect(Collectors.toList());
+	}
+
+	public List<PedidoDetalhadoDto> buscarPedidoPeloIdCliente(Long idCliente) {
+		
+		List<Pedido> pedidosDoCliente = pedidoRepository.findByIdCliente(idCliente);
+		
+		return pedidosDoCliente.stream().map(PedidoDtoMapper.INSTANCE::toPedidoDetalhadoDto).collect(Collectors.toList());
 	}
 
 }

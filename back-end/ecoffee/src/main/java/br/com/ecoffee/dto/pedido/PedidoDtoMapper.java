@@ -15,5 +15,9 @@ public interface PedidoDtoMapper {
 	@Mapping(target = "idProduto", source = "pedido.produto.idProduto")
 	@Mapping(target = "idEndereco", source = "pedido.endereco.idEndereco")
 	PedidoDto toPedidoDto(Pedido pedido);
+	
+	@Mapping(target = "nomeProduto", source = "pedido.produto.nomeProduto")
+	@Mapping(target = "imagem", source = "pedido.produto.imagem")
+	PedidoDetalhadoDto toPedidoDetalhadoDto(Pedido pedido);
 
 }

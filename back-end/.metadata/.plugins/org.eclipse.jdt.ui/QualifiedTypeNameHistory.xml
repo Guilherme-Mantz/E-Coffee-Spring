@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.cache.annotation.EnableCaching"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.io.Serial"/>
     <fullyQualifiedTypeName name="org.springframework.cache.annotation.Cacheable"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="java.io.Serializable"/>
     <fullyQualifiedTypeName name="org.springframework.util.MultiValueMap"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.controller.carrinho.CarrinhoDeComprasDto"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.factory.carrinho.CarrinhoDeCompraFactory"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.util.function.Function"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.dto.carrinho.CarrinhoDeComprasDto"/>
     <fullyQualifiedTypeName name="org.mapstruct.factory.Mappers"/>
@@ -59,5 +54,10 @@
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.exception.BusinessException"/>
     <fullyQualifiedTypeName name="br.com.ecoffee.service.carrinho.CarrinhoDeCompraService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="br.com.ecoffee.dto.pedido.PedidoDetalhadoDto"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 </qualifiedTypeNameHistroy>

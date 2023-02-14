@@ -14,6 +14,7 @@ import SecurityUser from '../pages/userPages/securityUser/SecurityUser';
 import SecurityUserForm from '../pages/userPages/securityUserForm/SecurityUserForm';
 import Carrinho from '../pages/carrinho/Carrinho';
 import FinalizarCompra from '../pages/finalizarCompra/FinalizarCompra';
+import OrderUser from '../pages/userPages/orderUser/OrderUser';
 
 function CustomRoute({ isPrivate, notLogged, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -45,6 +46,7 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/enderecos' component={AdressesUser} />
       <CustomRoute isPrivate exact path='/user/enderecos/novo' component={AdresFormUser} />
       <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
+      <CustomRoute isPrivate exact path='/user/pedidos' component={OrderUser} />
       <CustomRoute exact path='/produtos/:categoria' component={Produtos} />
       <CustomRoute exact path='/produto/:idProduto' component={DetalhesProduto} />
       <CustomRoute isPrivate exact path='/carrinho' component={Carrinho} />
