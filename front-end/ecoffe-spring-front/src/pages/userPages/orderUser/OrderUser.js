@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../context/AuthContext";
 
@@ -9,14 +10,12 @@ import Header from "../../../components/Header/Header";
 import api from "../../../hook/api";
 
 import './OrderUser.css';
-import history from "../../../history";
-import { Link } from "react-router-dom";
 
 export default function OrderUser () {
 
     const { dataCliente } = useContext(Context);
     const [ loading, setLoading ] = useState(true);
-    const [ dataPedidos, setDataPedidos ] = useState(null);
+    const [ dataPedidos, setDataPedidos ] = useState([]);
 
     useEffect(() => {
         
@@ -25,8 +24,6 @@ export default function OrderUser () {
             .then((res) => {
                 setDataPedidos(res.data);
                 console.log(dataPedidos)
-            })
-            .catch(() => {
             })
             .finally(() => {
                 setLoading(false)
@@ -47,13 +44,17 @@ export default function OrderUser () {
                 <div className='container'>
                     <h2 className='title-primary-color fw-bold mt-4'>Seus Pedidos</h2>
                     <div className='mt-5 row'>
-                        { dataPedidos !== null ? dataPedidos.map((pedido) => <CardOrder data={pedido}/>) : 
+                        { dataPedidos.length === 0 ?
                             <>
                                 <div>
                                     <h3>Você não possui pedidos</h3>
                                     <Link to="/user/home" className="text-white text-decoration-none btn bg-secondary-color fw-bold mt-4">Voltar</Link>
                                 </div>
                             </>
+                            
+                            : 
+                            dataPedidos.map((pedido) => <CardOrder data={pedido} key={pedido.idPedido}/>) 
+
                         } 
 
                     </div>

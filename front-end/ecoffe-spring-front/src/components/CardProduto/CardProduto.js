@@ -14,7 +14,7 @@ export default function CardProduto (props) {
                 <img src={require('../../../../../images/uploads/'+imagem)} className="card-img-top mt-3" style={{height: "230px"}} id="img-card" alt={nomeProduto}/>
                 <div className="card-body">
                     <p className="card-text" id='nomeproduto'>{nomeProduto}</p>
-                    <p className="card-text mt-1">{modedaBr(preco)}</p>
+                    <p className="card-text mt-1" id='preco'>{modedaBr(preco)}</p>
                 </div>
             </Link>
 

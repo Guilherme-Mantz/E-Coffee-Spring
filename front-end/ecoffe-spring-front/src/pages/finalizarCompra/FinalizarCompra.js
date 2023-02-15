@@ -77,8 +77,7 @@ export default function FinalizarCompra () {
         api.post("pedido/finalizarcompra", {idCliente: dataCliente.idCliente, idEndereco: idendereco})
         .then((res) => {
             if(res.status === 201){
-                /*Pagina de pedidos pendente*/
-                history.replace("/user/home");
+                history.replace("/user/pedidos");
                 window.location.reload();
             }
         })

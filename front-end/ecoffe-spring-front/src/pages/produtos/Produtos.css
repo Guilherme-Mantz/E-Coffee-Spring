@@ -4,10 +4,10 @@
     border: 1px solid #291616;
     border-radius: 5px;
     background-image: url(../../images/bACKGROUNS\ 1.png);
-    width: 245px;
+    width: 15.3125rem;
     align-items: start;
-    padding-left: 10px;
-    height: 650px;
+    padding-left: 0.625rem;
+    height: 40.625rem;
     justify-content: space-around;
     
 }
@@ -16,9 +16,9 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 .filtro-marcas .btn-marca{
-    padding-bottom: 5px;
+    padding-bottom: 0.3125rem;
 }
