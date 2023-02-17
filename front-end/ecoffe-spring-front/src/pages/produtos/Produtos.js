@@ -1,8 +1,10 @@
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import api from '../../hook/api';
+
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import api from '../../hook/api';
 import CardProduto from '../../components/CardProduto/CardProduto';
 
 import './Produtos.css'
@@ -11,11 +13,31 @@ export default function Produtos () {
 
     const { categoria } = useParams();
 
+    const location = useLocation();
+    const [nomeProduto, setNomeProduto] = useState(null);
+
     const [ dataProduto, setDataProduto ] = useState();
     const [ loading, setLoading ] = useState(true);
 
     const [ marcas, setMarcas ] = useState(new Set());
     const [marcasSelecionadas, setMarcasSelecionadas] = useState([]);
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        setNomeProduto(params.get("nomeProduto"));
+
+    }, [location.search]);
+
+    useEffect(() => {
+
+        if(nomeProduto){
+            api.get(`/produto?nomeProduto=${nomeProduto}`)
+            .then((res) => {
+                if (res.data.length > 0) { setDataProduto(res.data); }
+            });
+        }
+
+    }, [nomeProduto]);
 
     useEffect(() => {
         api.get(`/produto/listar/${categoria}`).then((res) => { 
@@ -66,6 +88,9 @@ export default function Produtos () {
     const produtosFiltrados = dataProduto.filter((produto) =>
         marcasSelecionadas.length === 0 ? true : marcasSelecionadas.includes(produto.marca)
     );
+
+    console.log(nomeProduto);
+    console.log(dataProduto)
 
     return (
         <>

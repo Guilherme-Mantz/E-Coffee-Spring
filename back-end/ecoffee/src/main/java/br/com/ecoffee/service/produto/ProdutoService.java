@@ -22,6 +22,7 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 
 	public List<ProdutoDto> listarProdutosEmDestaque() {
+		
 		List<Produto> produtos = produtoRepository.findProdutos(); // Limitar para buscar 3 produtos de cada tipo
 		List<ProdutoDto> emDestaque = produtos.stream()
 				.map(ProdutoDtoMapper.INSTANCE::toProdutoDto)
@@ -32,6 +33,7 @@ public class ProdutoService {
 
 	// Criar paginação
 	public List<ProdutoDto> buscarProdutosPorCategoria(String categoria) {
+		
 		List<Produto> produtos = produtoRepository.findByNomeCategoria(categoria);
 		List<ProdutoDto> produtosCategoria = produtos.stream()
 				.map(ProdutoDtoMapper.INSTANCE::toProdutoDto)
@@ -56,6 +58,18 @@ public class ProdutoService {
 		
 		produto.subtrairEstoque(quantidade);
 		produtoRepository.save(produto);
+	}
+
+	public List<ProdutoDto> buscarProdutosPeloNome(String nomeProduto) {
+		
+		List<Produto> produtosFiltrados = produtoRepository.findByNomeProdutoContainingIgnoreCase(nomeProduto);
+		
+		List<ProdutoDto> produtosPorNome = produtosFiltrados
+				.stream()
+				.map(ProdutoDtoMapper.INSTANCE::toProdutoDto)
+				.collect(Collectors.toList());
+		
+		return produtosPorNome;
 	}
 
 }

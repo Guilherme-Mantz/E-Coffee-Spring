@@ -4,15 +4,15 @@ nav {
 }
 
 #banner-home {
-    width: 140px;
+    width: 8.75rem;
 }
 
 #navbar {
-    height: 155px;
+    height: 9.6875rem;
 }
 
 .navbar-nav .nav-item .nav-link {
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 700;
     width: max-content;
 }
@@ -22,16 +22,15 @@ nav {
 }
 
 .navbar-nav .nav-item .nav-link #cart-icon {
-    font-size: 35px;
+    font-size: 2.1875rem;
 }
 
 #search-bar {
-    border-bottom-left-radius: 11px;
     border-bottom-right-radius: 2px;
     border-top-left-radius: 2px;
     border-top-right-radius: 11px;
     outline: 0 !important;
-    width: 560px;
+    width: 34rem;
 }
 
 /* ===== DROP DOWN usuario =======*/
@@ -56,4 +55,26 @@ nav {
 
 .dropdown-menu .dropdown-item:hover { 
     background-color: #CE5F20;
+}
+
+/*========== Produtos SearchBar ===========*/
+
+#produtos-searchbar {
+    background-color: #FFF1E0;
+    border: 1px solid  #CE5F20;
+    border-radius: 5px;
+    position: absolute;
+    top: 6.0625rem;
+    width: 36.625rem;
+    z-index: 50;
+}
+
+#nomeproduto-searchbar{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    line-height: 1.5rem;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 20rem;
 }

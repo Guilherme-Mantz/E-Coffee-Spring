@@ -1,12 +1,38 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../context/AuthContext";
 import { Link } from 'react-router-dom';
+
+import api from "../../hook/api";
+import history from "../../history";
 
 import './header.css';
 
 export default function Header () {
 
     const { dataCliente, handleLogout } = useContext(Context);
+    const [ dataSearchBar, setDataSearchBar ] = useState(null);
+
+    function handleChangeSearchBar (e){
+
+        let value = e.target.value.replace(/\s/g, '');
+
+        if(value.length >= 2){
+            api.get(`/produto?nomeProduto=${value}`)
+            .then((res) => {
+                if (res.data.length > 0) { setDataSearchBar(res.data.slice(0,5)); }
+            })
+        }
+        else {
+            setDataSearchBar(null);
+        }
+    }
+
+    async function handleSearchProduct (e){
+        e.preventDefault();
+
+        history.replace(`/produtos?nomeProduto=${e.target[1].value}`);
+        window.location.reload()
+    }
 
     return (
         <nav className="navbar navbar-expand-lg bg-primary-color" id="navbar">
@@ -27,8 +53,37 @@ export default function Header () {
                             <Link className="nav-link text-white" to="/">Sobre nós</Link>
                         </li>
                         <li className="nav-item">
-                            <form action="" id="formPesquisar">
-                                <input className="form-control text-center" type="search" placeholder="Pesquisar" id="search-bar"/>
+                            <form id="formPesquisar" onSubmit={e => handleSearchProduct(e)}>
+                                <div className="input-group">
+                                    <button type="submit" className="input-group-text" id="basic-addon1">
+                                        <i className="bi bi-search"></i>
+                                    </button>
+                                    <input 
+                                        className="form-control text-center" 
+                                        name="nomeProduto" 
+                                        type="search" 
+                                        placeholder="Pesquisar" 
+                                        id="search-bar" 
+                                        aria-describedby="basic-addon1" 
+                                        onChange={handleChangeSearchBar}
+                                        style={dataCliente !== null ? {width: 33+'rem'} : {}}
+                                    />
+                                </div>
+                                {
+                                    dataSearchBar !== null &&
+
+                                    <div id="produtos-searchbar">
+                                        {dataSearchBar?.map(produto => (
+
+                                            <div className="m-2 border-bottom border-secondary pb-2" key={produto.idProduto}>
+                                                <Link to={"/produto/"+produto.idProduto} className="text-decoration-none text-black d-inline-block">
+                                                    <img src={require('../../../../../images/uploads/' + produto.imagem)} alt={produto.nomeProduto} width="115" height="115" />
+                                                    <span className="ms-2" id="nomeproduto-searchbar">{produto.nomeProduto}</span>
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </div>
+                                }
                             </form>
                         </li>
                         <li className="nav-item">
@@ -53,7 +108,7 @@ export default function Header () {
                             </>
                             :
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/iniciarsessao" style={{width: 'auto'}}>Realize o Login ou Cadastre-se</Link>
+                                <Link className="nav-link text-white" to="/iniciarsessao" style={{width: 'auto'}}>Login ou Cadastre-se</Link>
                             </li>
                         }
 

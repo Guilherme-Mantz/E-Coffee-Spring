@@ -7,12 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.ecoffee.model.produto.Produto;
 
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
 	@Query("SELECT produto FROM Produto produto WHERE produto.categoria.nome = :categoria")
 	List<Produto> findByNomeCategoria(String categoria);
 
 	@Query(nativeQuery = true, value = "SELECT * FROM produtos LIMIT 6")
 	List<Produto> findProdutos();
+
+	List<Produto> findByNomeProdutoContainingIgnoreCase(String nomeProduto);
 
 }

@@ -40,6 +40,7 @@ export default function Router() {
     <Switch>
       <CustomRoute exact path='/' component={Index} />
       <CustomRoute notLogged path='/iniciarsessao' component={LoginPage} />
+
       <CustomRoute isPrivate path='/user/home' component={HomeUser} />
       <CustomRoute isPrivate exact path='/user/seguranca' component={SecurityUser} />
       <CustomRoute isPrivate exact path='/user/seguranca/editar' component={SecurityUserForm} />
@@ -47,8 +48,11 @@ export default function Router() {
       <CustomRoute isPrivate exact path='/user/enderecos/novo' component={AdresFormUser} />
       <CustomRoute isPrivate exact path='/user/enderecos/alterar/:idEndereco' component={AdresFormUser} />
       <CustomRoute isPrivate exact path='/user/pedidos' component={OrderUser} />
+
+      <CustomRoute exact path="/produtos" component={Produtos} />
       <CustomRoute exact path='/produtos/:categoria' component={Produtos} />
       <CustomRoute exact path='/produto/:idProduto' component={DetalhesProduto} />
+
       <CustomRoute isPrivate exact path='/carrinho' component={Carrinho} />
       <CustomRoute isPrivate exact path='/finalizarcompra' component={FinalizarCompra} />
     </Switch>

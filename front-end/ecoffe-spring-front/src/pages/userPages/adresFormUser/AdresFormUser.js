@@ -9,8 +9,6 @@ import history from '../../../history';
 import Header from '../../../components/Header/Header';
 import Footer from '../../../components/Footer/Footer';
 
-import './AdresFormUser.css';
-
 export default function AdresFormUser () {
 
     const { idEndereco } = useParams();

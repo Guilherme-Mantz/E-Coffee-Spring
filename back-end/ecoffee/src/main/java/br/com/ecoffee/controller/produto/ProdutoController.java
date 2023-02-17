@@ -51,4 +51,13 @@ public class ProdutoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@Cacheable("nomeFiltrado")
+	@GetMapping
+	public List<ProdutoDto> filtrarProdutosPeloNome(String nomeProduto){
+		
+		List<ProdutoDto> produtos = produtoService.buscarProdutosPeloNome(nomeProduto);
+		return produtos;
+		
+	}
+	
 }
