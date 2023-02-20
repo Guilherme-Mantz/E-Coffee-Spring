@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +42,9 @@ public class ClienteController {
 		return ResponseEntity.created(uri).body(cliente);
 	}
 	
+	@CacheEvict(value="dataCliente", allEntries = true)
 	@PutMapping("atualizar/{id}")
-	public ResponseEntity<ClienteDto> atualizarCliente(@PathVariable Long id, @RequestBody AtualizarClienteForm clienteForm) {
+	public ResponseEntity<ClienteDto> atualizarCliente(@PathVariable Long id, @RequestBody @Valid AtualizarClienteForm clienteForm) {
 		Optional<Cliente> cliente = clienteService.buscarClientePeloId(id);
 		if(cliente.isPresent()) {
 			
@@ -52,6 +55,7 @@ public class ClienteController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@Cacheable("dataCliente")
 	@GetMapping("get/data")
 	public ClienteDto detalhesDeLoginCliente(@RequestHeader("Authorization") String authorization) {
 		

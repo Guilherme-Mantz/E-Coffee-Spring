@@ -1,0 +1,5 @@
+package br.com.ecoffee.validation.cliente;
+
+public class ClienteValidation {
+
+}

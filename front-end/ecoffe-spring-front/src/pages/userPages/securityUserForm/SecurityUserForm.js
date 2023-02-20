@@ -29,6 +29,9 @@ export default function SecurityUserForm () {
     const [ validEmail, setValidEmail ] = useState(false);
     const [ validCpf, setValidCpf ] = useState(true);
 
+    const [ errorCpf, setErrorCpf ] = useState({status: false, error: ''});
+    const [ errorEmail, setErrorEmail ] = useState({status: false, error: ''});
+
     useEffect(() => {
         if(dataCliente !== null){
             setForm(dataCliente)
@@ -74,7 +77,14 @@ export default function SecurityUserForm () {
                 };
             })
             .catch((error) => {
-                //criar validação de email e cpf UNIQUE
+
+                if(error.response.data.campo === "email" ){
+                    setErrorEmail({status: true, error: error.response.data.erro});
+                };
+
+                if(error.response.data.campo === "cpf" ){
+                    setErrorCpf({status: true, error: error.response.data.erro});
+                };
             })
         };
     };
@@ -111,6 +121,7 @@ export default function SecurityUserForm () {
                                 <input type="text" className="form-control w-50" id="cpf" name='cpf' defaultValue={form['cpf'] !== '' && form['cpf']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["cpf"] === "" ? <span>É necessário informar o CPF</span> : ''}
                                 { !validCpf && form["cpf"] !== "" ? <span>CPF inválido </span> : ''}
+                                { errorCpf["status"] ? <span>{errorCpf["error"]}</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
@@ -118,6 +129,7 @@ export default function SecurityUserForm () {
                                 <input type="email" className="form-control w-50" id="email" name='email' defaultValue={form['email'] !== '' && form['email']} onBlur={(e) => handleChange(e)}/>
                                 { emptyValue && form["email"] === "" ? <span>É necessário informar o E-mail</span> : ''}
                                 { !validEmail && form["email"] !== "" ? <span>E-mail inválido </span> : '' }
+                                { errorEmail["status"] ? <span>{errorEmail["error"]}</span> : ''}
                             </li>
 
                             <li className="list-group-item mx-4">
