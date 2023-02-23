@@ -31,12 +31,12 @@ public class PedidoFactory {
 		List<Carrinho> carrinhos = carrinhoService.buscarCarrinhoPeloIdCliente(idCliente);
 		Endereco endereco = enderecoService.buscarEnderecoPeloId(idEndereco).get();
 
-		for (Carrinho car : carrinhos) {
+		for (Carrinho cart : carrinhos) {
 
-			Produto produto = car.getProduto();
-			Double valorTotal = car.getQuantidade() * produto.getPreco().doubleValue();
+			Produto produto = cart.getProduto();
+			Double valorTotal = cart.getQuantidade() * produto.getPreco().doubleValue();
 
-			Pedido pedido = new Pedido(car.getQuantidade(), LocalDateTime.now(), valorTotal, car.getCliente(), endereco,
+			Pedido pedido = new Pedido(cart.getQuantidade(), LocalDateTime.now(), valorTotal, cart.getCliente(), endereco,
 					produto);
 
 			pedidos.add(pedido);

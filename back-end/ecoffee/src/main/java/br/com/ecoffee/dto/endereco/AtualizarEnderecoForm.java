@@ -1,15 +1,47 @@
 package br.com.ecoffee.dto.endereco;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.ecoffee.model.endereco.Endereco;
 
 public class AtualizarEnderecoForm {
-
+	
+	@NotNull
+	@NotEmpty
+	@Length(min = 3)
 	private String nomeEndereco;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 10)
 	private String logradouro;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 8)
 	private String cep;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 1)
 	private String numeroResidencia;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 10)
 	private String bairro;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 5)
 	private String cidade;
+
+	@NotNull
+	@NotEmpty
+	@Length(min = 2)
 	private String uf;
 	private String complemento;
 

@@ -1,5 +1,0 @@
-package br.com.ecoffee.dto.pedido;
-
-public class PedidoDetalhadoDto {
-
-}

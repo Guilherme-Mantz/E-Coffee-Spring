@@ -56,10 +56,6 @@ public class ClienteService {
 		return ClienteDtoMapper.INSTANCE.toClienteDto(clienteAtualizado);
 	}
 
-	public Optional<Cliente> buscarClientePeloCpf(String cpf) {
-		return clienteRepository.findByCpf(cpf);
-	}
-
 	public Optional<Cliente> buscarClientePeloEmail(String email) {
 		return clienteRepository.findByEmail(email);
 	}
