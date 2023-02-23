@@ -1,83 +1,62 @@
-.carrossel {
-	position: relative;
-	height: 600px;
-	width: 90%;
-	margin: 0 auto;
-    margin-top: 100px;
+#slider-container {
+	margin-bottom: 6rem;
 }
 
-.carrossel_img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+#slider {
+    margin-top: 5em;
+    margin-bottom: 1em;
 }
 
-.carrossel_track-container {
-	background-color: thistle;
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-    border-radius: 25px;
+#slider .carousel-caption {
+    bottom: 3em;
 }
 
-.carrossel_track {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	position: relative;
-	height: 100%;
-	transition: transform 250ms ease-in;
+#carousel-image{
+	height: 35rem;
+	width: 70rem;
 }
 
-.carrossel_slide {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 100%;
+.btn {
+    border-radius: 0;
 }
 
-.carrossel_button {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background: transparent;
-	border: 0;
+#slider .btn {
+    padding: 0.3 0.8em;
+    font-size: 1em;
+    margin-top: 1em;
 }
 
-.carrossel_button--left {
-left: -70px;
+.carousel-control-prev i,
+.carousel-control-next i {
+    color: #111;
+    font-size: 3em;
 }
 
-.carrossel_button--right {
-	right: -70px;
-	transform: rotate(180deg);
-}
-	
-.carrossel_button img{
-	width: 40px;
-}
-
-.carrossel_nav {
-	display: flex;
-	justify-content: center;
-	padding: 10px 0;
+.carousel-indicators [data-bs-target] {
+	border: 1px solid #CE5F20;
+	border-radius: 50%;
+	height: 20px;
+    opacity: 0.8;
+	width: 20px;
 }
 
-.carrossel_indicador { 
-border: 1px solid #CE5F20;;
-border-radius: 50%;
-width: 20px;
-height: 20px;
-
-margin: 0 15px;
-cursor: pointer;
+.carousel-indicators .active {
+    background-color: #CE5F20;
 }
 
-.carrossel_indicador.current-slide {
-	background: #CE5F20;
-
+.carousel-indicators {
+	margin-bottom: -10rem !important;
 }
 
-.is-hidden {
-	display: none;
+@media(min-width: 768px) {
+    #slider .carousel-caption {
+        bottom: 15em;
+    }
+    #slider .btn {
+        padding: 0.6 1.6em;
+        font-size: 1.2em;
+    }
+    .carousel-indicators{
+        bottom: 7em;
+    }
 }
