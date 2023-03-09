@@ -1,0 +1,12 @@
+package br.com.ecoffee.service.cliente;
+
+import java.util.Optional;
+
+import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.usuario.Usuario;
+
+public interface UserService {
+    Optional<Cliente> buscarClientePeloEmail(String email);
+
+    Optional<Usuario> buscarPorNomeUsuario(String nomeUsuario);
+}

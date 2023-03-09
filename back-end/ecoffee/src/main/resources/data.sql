@@ -1,3 +1,7 @@
+INSERT INTO roles (name) VALUES ('USER');
+INSERT INTO roles (name) VALUES ('EDITOR');
+INSERT INTO roles (name) VALUES ('ADMIN');
+
 INSERT INTO categoria(nome) VALUES ('cafeteira'), ('capsula');
 
 INSERT INTO marca(marca) VALUES ('mondial'), ('baggio'), ('starbucks');

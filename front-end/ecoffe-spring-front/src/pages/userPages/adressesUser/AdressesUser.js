@@ -37,7 +37,7 @@ export default function AdressesUser () {
                         { enderecos.length < 3 ? 
                             <Link to="/user/enderecos/novo" id='link-addAdres' className='d-flex flex-column text-center'>
                                 <i className="bi bi-plus-lg mt-auto"></i>
-                                <p className='text-wite fw-bold lead mb-auto'>Adicionar Endereço</p>
+                                <p className='text-white fw-bold lead mb-auto'>Adicionar Endereço</p>
                             </Link> 
                         : ''}
 

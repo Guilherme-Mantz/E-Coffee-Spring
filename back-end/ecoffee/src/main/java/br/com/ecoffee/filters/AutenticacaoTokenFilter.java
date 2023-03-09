@@ -1,6 +1,7 @@
 package br.com.ecoffee.filters;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -12,49 +13,71 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.ecoffee.model.cliente.Cliente;
+import br.com.ecoffee.model.usuario.Usuario;
 import br.com.ecoffee.service.cliente.ClienteService;
-import br.com.ecoffee.util.security.TokenService;
+import br.com.ecoffee.service.usuario.UsuarioService;
+import br.com.ecoffee.util.security.JwtTokenUtil;
 
-public class AutenticacaoTokenFilter extends OncePerRequestFilter{
+public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 
-	private TokenService tokenService;
 	private ClienteService clienteService;
-	
-	public AutenticacaoTokenFilter(TokenService tokenService, ClienteService clienteService) {
-		this.tokenService = tokenService;
+	private UsuarioService usuarioService;
+	private JwtTokenUtil jwtTokenUtil;
+
+
+	public AutenticacaoTokenFilter(ClienteService clienteService, UsuarioService usuarioService,
+			JwtTokenUtil jwtTokenUtil) {
 		this.clienteService = clienteService;
+		this.usuarioService = usuarioService;
+		this.jwtTokenUtil = jwtTokenUtil;
 	}
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		
+
 		String token = recuperarToken(request);
-		boolean tokenValido = tokenService.isTokenValido(token);
-		if(tokenValido) {
+		if (jwtTokenUtil.isTokenValido(token)) {
+			autenticarUsuario(token);
 			autenticarCliente(token);
 		}
-		
+
 		filterChain.doFilter(request, response);
 	}
 
 	private void autenticarCliente(String token) {
-		Long idUsuario = tokenService.getIdUsuario(token);
-		
-		Cliente usuario = clienteService.buscarClientePeloId(idUsuario).get();
-		
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);		
+		String username = jwtTokenUtil.getUsername(token);
+
+		Optional<Cliente> usuario = clienteService.buscarClientePeloEmail(username);
+
+		if (usuario.isPresent()) {
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null,
+					usuario.get().getAuthorities());
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
+	}
+
+	private void autenticarUsuario(String token) {
+		String username = jwtTokenUtil.getUsername(token);
+
+		Optional<Usuario> usuario = usuarioService.buscarPorNomeUsuario(username);
+
+		if (usuario.isPresent()) {
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null,
+					usuario.get().getAuthorities());
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
 	}
 
 	private String recuperarToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");
-		
-		if(token == null || token.isEmpty() || !token.startsWith("Bearer")) {
+
+		if (token == null || token.isEmpty() || !token.startsWith("Bearer")) {
 			return null;
 		}
-		
+
 		return token.substring(7, token.length());
 	}
 

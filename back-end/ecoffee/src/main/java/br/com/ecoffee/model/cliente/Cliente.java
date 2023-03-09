@@ -1,21 +1,26 @@
 package br.com.ecoffee.model.cliente;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.ecoffee.model.perfil.Perfil;
+import br.com.ecoffee.model.role.Role;
 
 @Entity
 public class Cliente implements UserDetails {
@@ -44,8 +49,12 @@ public class Cliente implements UserDetails {
 	@Column(nullable = false, length = 200)
 	private String senha;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Perfil> perfis = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "cliente_roles", joinColumns = @JoinColumn(name = "idCliente"), inverseJoinColumns = @JoinColumn(name = "idRole"))
+	private Set<Role> roles = new HashSet<>();
+
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	private List<Perfil> perfis = new ArrayList<>();
 
 	public Cliente() {
 	}
@@ -115,10 +124,21 @@ public class Cliente implements UserDetails {
 		this.senha = senha;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.perfis;
+	public Set<Role> getRoles() {
+		return roles;
 	}
+
+	public void setRoles(Role role) {
+		this.roles.add(role);
+	}
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+    	
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+    }
 
 	@Override
 	public String getPassword() {

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +29,8 @@ import br.com.ecoffee.service.cliente.ClienteService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
+	@Autowired
 	private ClienteService clienteService;
-	
-	public ClienteController(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
 
 	@PostMapping("cadastrar")
 	public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder) {

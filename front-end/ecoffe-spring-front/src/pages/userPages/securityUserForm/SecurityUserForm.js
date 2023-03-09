@@ -72,6 +72,9 @@ export default function SecurityUserForm () {
             await api.put(`/cliente/atualizar/${dataCliente.idCliente}`, form)
             .then((res) => { 
                 if(res.status === 200){
+
+                    localStorage.removeItem('dataCliente');
+
                     history.push('/user/seguranca');
                     window.location.reload()
                 };

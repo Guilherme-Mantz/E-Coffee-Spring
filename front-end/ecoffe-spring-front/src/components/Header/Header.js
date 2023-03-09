@@ -98,8 +98,8 @@ export default function Header () {
                                 <Link to='#' className="nav-link text-white dropdown-toggle-split" data-bs-toggle="dropdown">Olá, {dataCliente.nome}<i className="bi bi-chevron-down"></i></Link>
 
                                 <ul className="dropdown-menu" style={{left: "auto", top: "99%"}}>
-                                    <li><Link className="dropdown-item btn text-wite mt-2" to="/user/home">Minha Conta</Link></li>
-                                    <li><button className="dropdown-item btn text-wite mt-3" type="button" onClick={ () => handleLogout() }>Sair</button></li>
+                                    <li><Link className="dropdown-item btn text-white mt-2" to="/user/home">Minha Conta</Link></li>
+                                    <li><button className="dropdown-item btn text-white mt-3" type="button" onClick={ () => handleLogout() }>Sair</button></li>
                                 </ul>
                             </li>
                             <li className="nav-item">

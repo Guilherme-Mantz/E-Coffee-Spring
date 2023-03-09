@@ -6,7 +6,7 @@ import history from '../history';
 export default function useAuth() {
     const [ authenticated, setAuthenticated ] = useState(false);
     const [ loading, setLoading ] = useState(true);
-    const [ dataCliente, seDataCliente ] = useState(null);
+    const [ dataCliente, setDataCliente ] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -20,19 +20,42 @@ export default function useAuth() {
     }, []);
 
     useEffect(() => {
-        if(authenticated){
-            
-            api.get('/cliente/get/data').then((res) => { 
-                seDataCliente(res.data);
-            })
-            .catch((err) => {
-                if(err.response.status === 403){
-                    localStorage.removeItem('token');
-                    setAuthenticated(false);
-                };
-            });
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            setAuthenticated(true);
         }
-    }, [authenticated])
+        else {
+            localStorage.removeItem('dataCliente');
+        }
+
+        if (authenticated) {
+
+            const storedDataCliente = localStorage.getItem('dataCliente');
+
+            if (storedDataCliente) {
+                setDataCliente(JSON.parse(storedDataCliente));
+            } 
+            else {
+
+                api.get('/cliente/get/data')
+                    .then(res => {
+                        setDataCliente(res.data);
+                        localStorage.setItem('dataCliente', JSON.stringify(res.data));
+                    })
+                    .catch(err => {
+                        if (err.response.status === 403) {
+
+                            localStorage.removeItem('dataCliente');
+                            localStorage.removeItem('token');                            
+
+                            setAuthenticated(false);
+                        }
+                    });
+            }
+        }
+    }, [authenticated]);
 
     async function handleLogin(form){
         const { data: { token } } = await api.post("/auth", form);
@@ -41,14 +64,12 @@ export default function useAuth() {
         api.defaults.headers.Authorization = `Bearer ${token}`;
         
         setAuthenticated(true);
-        history.push('/');
-
-        window.location.reload();
     };
 
     function handleLogout() {
         setAuthenticated(false);
 
+        localStorage.removeItem('dataCliente');
         localStorage.removeItem('token');
         api.defaults.headers.Authorization = undefined;
 

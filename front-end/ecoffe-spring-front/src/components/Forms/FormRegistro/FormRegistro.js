@@ -90,42 +90,42 @@ export default function FormRegistro () {
                 <h1>Cadastre-se</h1>
                 <div className="formCadastro">
                     <input type="text" name="nome" placeholder="Nome" id="nome" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["nome"] === "" ? <span className='text-wite'>É necessário informar o nome</span> : ''}
+                    { emptyValue && form["nome"] === "" ? <span className='text-white'>É necessário informar o nome</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="text" name="sobrenome" placeholder="Sobrenome" id="sobrenome" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["sobrenome"] === "" ? <span className='text-wite'>É necessário informar o Sobrenome</span> : ''}
+                    { emptyValue && form["sobrenome"] === "" ? <span className='text-white'>É necessário informar o Sobrenome</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="text" name="telefone" maxLength="11" placeholder="Telefone" id="telefone" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["telefone"] === ""? <span className='text-wite'>É necessário informar o Telefone</span> : ''}
+                    { emptyValue && form["telefone"] === ""? <span className='text-white'>É necessário informar o Telefone</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="text" name="cpf" maxLength="11" placeholder="CPF" id="cpf" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["cpf"] === "" ? <span className='text-wite'>É necessário informar o CPF</span> : ''}
-                    { !validCpf && form["cpf"] !== "" ? <span className='text-wite'>CPF inválido </span> : ''}
-                    { errorCpf["status"] ? <span className='text-wite'>{errorCpf["error"]}</span> : ''}
+                    { emptyValue && form["cpf"] === "" ? <span className='text-white'>É necessário informar o CPF</span> : ''}
+                    { !validCpf && form["cpf"] !== "" ? <span className='text-white'>CPF inválido </span> : ''}
+                    { errorCpf["status"] ? <span className='text-white'>{errorCpf["error"]}</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="email" name="email" placeholder="E-mail" id="email" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["email"] === "" ? <span className='text-wite'>É necessário informar o E-mail</span> : ''}
-                    { !validEmail && form["email"] !== "" ? <span className='text-wite'>E-mail inválido </span> : '' }
-                    { errorEmail["status"] ? <span className='text-wite'>{errorEmail["error"]}</span> : ''}
+                    { emptyValue && form["email"] === "" ? <span className='text-white'>É necessário informar o E-mail</span> : ''}
+                    { !validEmail && form["email"] !== "" ? <span className='text-white'>E-mail inválido </span> : '' }
+                    { errorEmail["status"] ? <span className='text-white'>{errorEmail["error"]}</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="password" name="senha" placeholder="Senha" id="senha" onBlur={(e) => handleChange(e)}/>
-                    { emptyValue && form["senha"] === ""? <span className='text-wite'>É necessário informar a Senha</span> : ''}
-                    { lengthPassword && form["senha"] !== "" ? <span className='text-wite'>{lengthPassword}</span> : ''}
+                    { emptyValue && form["senha"] === ""? <span className='text-white'>É necessário informar a Senha</span> : ''}
+                    { lengthPassword && form["senha"] !== "" ? <span className='text-white'>{lengthPassword}</span> : ''}
                 </div>
 
                 <div className="formCadastro">
                     <input type="password" name="confirmarSenha" placeholder="Confirme a Senha" id="confirmarSenha" onChange={(e) => handleChange(e)}/>
-                    { confirmedPassword ? <span className='text-wite'>As senhas precisam ser iguais!</span> : '' }
+                    { confirmedPassword ? <span className='text-white'>As senhas precisam ser iguais!</span> : '' }
                 </div>
                 <button style={{marginTop: "17px"}} type="submit">Registrar-se</button>
             </form>
