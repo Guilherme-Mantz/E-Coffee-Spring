@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.ecoffee.model.cliente.Cliente;
-import br.com.ecoffee.model.role.Role;
 import br.com.ecoffee.model.usuario.Usuario;
 import br.com.ecoffee.service.cliente.ClienteService;
 import br.com.ecoffee.service.usuario.UsuarioService;
@@ -36,12 +35,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		if (clienteOptional.isPresent()) {
 			Cliente cliente = clienteOptional.get();
-			
+
 			Set<GrantedAuthority> authorities = new HashSet<>();
-			for (Role role : cliente.getRoles()) {
-			    authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-			}
-			
+
+			cliente.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getAuthority())));
+
 			return new User(cliente.getEmail(), cliente.getSenha(), authorities);
 		} 
 		else {
@@ -52,12 +50,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 			}
 
 			Usuario usuario = usuarioOptional.get();
-			
+
 			Set<GrantedAuthority> authorities = new HashSet<>();
-			for (Role role : usuario.getRoles()) {
-			    authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-			}
 			
+			usuario.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getAuthority())));
+
 			return new User(usuario.getNomeUsuario(), usuario.getSenha(), authorities);
 		}
 	}

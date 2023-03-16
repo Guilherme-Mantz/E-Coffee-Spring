@@ -1,5 +1,9 @@
 package br.com.ecoffee.dto.cliente;
 
+import java.util.List;
+
+import br.com.ecoffee.model.role.Role;
+
 public class ClienteDto {
 
 	private Long idCliente;
@@ -8,6 +12,7 @@ public class ClienteDto {
 	private String telefone;
 	private String cpf;
 	private String email;
+	private List<Role> roles;
 
 	public Long getIdCliente() {
 		return idCliente;
@@ -57,4 +62,11 @@ public class ClienteDto {
 		this.email = email;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 }

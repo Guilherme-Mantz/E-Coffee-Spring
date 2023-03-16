@@ -53,9 +53,6 @@ public class Cliente implements UserDetails {
 	@JoinTable(name = "cliente_roles", joinColumns = @JoinColumn(name = "idCliente"), inverseJoinColumns = @JoinColumn(name = "idRole"))
 	private Set<Role> roles = new HashSet<>();
 
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	private List<Perfil> perfis = new ArrayList<>();
-
 	public Cliente() {
 	}
 

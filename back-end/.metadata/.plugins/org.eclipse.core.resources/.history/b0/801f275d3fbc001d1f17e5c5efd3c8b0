@@ -1,5 +1,0 @@
-package br.com.ecoffee.util.security;
-
-public class JwtTokenUtil {
-
-}
